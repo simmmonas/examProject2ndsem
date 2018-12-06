@@ -10,9 +10,14 @@ function reset(){
       sliderImages[i].style.display = 'none';
     }
 }
+
+
 //Initializing the slider
 function startSlide(){
     reset()
+    sliderImages[0].style.display = 'block';
+}
+
 
 //show previous
 function slideLeft(){
@@ -23,19 +28,23 @@ function slideLeft(){
 
 
 
-//Left-arrow-click
-arrowLeft.addEventListener('click', function(){
-    if(current === 0){
-        current = sliderImages.length;
-        
-}
+
     
 //Show next
 function slideRight(){
     reset();
     sliderImages[current + 1].style.display = 'block';
     current++;
+    
 }
+
+//Left-arrow-click
+arrowLeft.addEventListener('click', function(){
+    if(current === 0){
+        current = sliderImages.length; 
+}
+slideLeft();
+});
 
     //Right-arrow-click
 arrowRight.addEventListener('click', function(){
@@ -43,11 +52,12 @@ arrowRight.addEventListener('click', function(){
         current = -1;
         
 }
+     slideRight();
     
 });
-      startSlide();
-    slideLeft();
-    slideRightt();
+    startSlide();
+   
+   
   
     
     
