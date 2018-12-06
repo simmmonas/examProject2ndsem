@@ -68,3 +68,10 @@ body,
 }
 
 
+#logo {
+    width: 100vw;
+}
+.menubar a{
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+}
