@@ -35,17 +35,6 @@ body,
     background-image: url('../img/3.jpg')
 }
 
-.slide-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-}
-
-.slide-content span {
-    font-size: 4px;
-    color: white;
-}
 
 .arrow {
     cursor: pointer;
