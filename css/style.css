@@ -1,24 +1,38 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: darkgrey;
+}
+
+h1 {
+    font-size: 16px;
+}
+
+p {
+    font-size: 12px;
+}
+
 /* Slider for mobile*/
 
 body,
 #slider,
-.wrap,
+.slider_wrap,
 .slide-content {
     margin-left: 0;
     margin-right: 0;
- /*    padding-left: 4vw;
+    /*    padding-left: 4vw;
     padding-right: 4vw;
     padding-top: 4vh;
     padding-bottom: 4vh; */
     padding: 10px;
     width: 45vh;
     height: 40vh;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    /* overflow-x: hidden; */
+    /* overflow-y: hidden; */
 }
 
-.wrap {
+.slider_wrap {
     position: relative;
+    padding: 5px;
 }
 
 .slide {
@@ -49,9 +63,8 @@ body,
     height: 0;
     border-style: solid;
 }
-.arrow:hober{
-    size
-}
+
+
 
 #arrow-left {
     border-width: 10px 15px 10px 0;
@@ -70,8 +83,75 @@ body,
 
 #logo {
     width: 100vw;
+    padding: 10px;
 }
-.menubar a{
+
+.menubar a {
     text-decoration: none;
-    font-family: 'Open Sans', sans-serif;
+}
+
+
+/*MOBILE GRID AREA INDEX*/
+
+.wrapper_index {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "logo" "menubar" "slider_wrap" "news" "video" "about_products" "footer";
+    align-items: center;
+    text-align: center;
+}
+
+.logo {
+    grid-area: logo;
+}
+
+.menubar {
+    grid-area: menubar;
+}
+
+.slider_wrap {
+    grid-area: slider_wrap;
+
+}
+
+.news {
+    grid-area: news;
+}
+
+.video {
+    grid-area: video;
+}
+
+.about_products {
+    grid-area: about_products;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+
+#menubar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-auto-rows: auto;
+    grid-template-areas: "glowna" "produkty" "onas";
+    text-align: center;
+    padding: 10px;
+}
+
+
+.news {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    margin-top: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    grid-auto-rows: auto;
+   
+    grid-template-areas: "news";
+    text-align: center;
 }
