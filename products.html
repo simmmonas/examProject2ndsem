@@ -56,7 +56,22 @@
 <script>
     let template = document.querySelector("#templateProducts").content;
     let parent = document.querySelector("main");
+var n=0;
 
+   document.querySelector("#loadmore").addEventListener("click", adding);
+
+    function adding(){
+        n++;
+        listening();
+    }
+    function listening(){
+    if(n==0){
+        getProducts();
+    }else if(n==1){
+        getTwenty();
+
+    }
+    }
 
 
 
@@ -64,7 +79,13 @@
         //so what we are doing different here is going around the wordpress limitation and asking for rest API to show us 100 results per page
         //however 100 is the max but we have more than 100 items in "products" so we are including also page 2, where is the rest of the items
         //after reaching 100, this is why the link is so strange
-        fetch("http://angadesign.dk/exam/wordpress/wp-json/wp/v2/product?_embed&per_page=100&page=2").then(res=>res.json()).then(showAll);
+        fetch("http://angadesign.dk/exam/wordpress/wp-json/wp/v2/product?_embed&per_page=10").then(res=>res.json()).then(showAll);
+    }
+    function getTwenty(){
+        //so what we are doing different here is going around the wordpress limitation and asking for rest API to show us 100 results per page
+        //however 100 is the max but we have more than 100 items in "products" so we are including also page 2, where is the rest of the items
+        //after reaching 100, this is why the link is so strange
+        fetch("http://angadesign.dk/exam/wordpress/wp-json/wp/v2/product?_embed&per_page=20").then(res=>res.json()).then(showAll);
     }
     function showAll(products){
         products.forEach(product=>{
@@ -87,13 +108,11 @@ else if (window.matchMedia('(min-width:701px) and (max-width: 1000px)').matches)
             }
 
 
-
-
             parent.appendChild(copy);
+
     })}
 
-    getProducts();
-
+listening();
 
     </script>
 
