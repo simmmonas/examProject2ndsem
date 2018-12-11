@@ -59,11 +59,14 @@
 var n=1;
     let baselink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/product?_embed&page=";
 
+    //this even listener is connected to the button
    document.querySelector("#loadmore").addEventListener("click", adding);
 
+    //here you can see a simple counter for n, which represents number of the page that will be altered in URL, from where we are fetching our data, I changed in wordpress settings the number of posts displayed on one page to 10
     function adding(){
         n++;
         listening();
+        //function listening will activate the fetching AGAIN depending on how many clicks were done to the button, if it's zero, it's fetching with the default value of n, so "1", so it's fetching data from the first page
     }
     function listening(){
         getProducts();
@@ -103,6 +106,7 @@ else if (window.matchMedia('(min-width:701px) and (max-width: 1000px)').matches)
 
     })}
 
+    //here instead of activating fetching we activate listening, which controls the page, we are fetching from
 listening();
 
     </script>
