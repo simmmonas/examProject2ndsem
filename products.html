@@ -8,6 +8,10 @@
 </head>
 
 <body>
+    <div id="wrapperproducts">
+     <div class="logo">
+        <img src="img/logo.jpg" id="logo" alt="Logo Pracowni Leśnej 6">
+    </div>
     <div id="menubar" class="menubar">
         <div class="glowna">
             <a href="glowna" class="href">GŁÓWNA</a>
@@ -26,6 +30,73 @@
             <h2 class="title">Title</h2>
         </template>
     
+    <main></main><button id="loadmore">Load more</button>
+
+        <footer><div id="left">
+            <h2>tel.</h2><p2>+48 503 491 825</p2>
+            <p3>pracownialesna6@gmail.com
+</p3> <h3>instagram</h3><p3>pracownialesna6</p3>
+            <h4>sklep online</h4><p4><a4>www.etsy.com/shop/PracowniaLesna6</a4>
+</p4>
+
+
+            </div>
+
+
+            <div id="right">
+            <h5>Godziny otwarcia:</h5>
+<p5>poniedziałek-piątek: 10:00 - 18:00</p5>
+                <p5>sobota, niedziela - nieczynne</p5>
+
+
+            </div>
+
+    </footer></div>
+
+<script>
+    let template = document.querySelector("#templateProducts").content;
+    let parent = document.querySelector("main");
+
+
+
+
+    function getProducts(){
+        //so what we are doing different here is going around the wordpress limitation and asking for rest API to show us 100 results per page
+        //however 100 is the max but we have more than 100 items in "products" so we are including also page 2, where is the rest of the items
+        //after reaching 100, this is why the link is so strange
+        fetch("http://angadesign.dk/exam/wordpress/wp-json/wp/v2/product?_embed&per_page=100&page=2").then(res=>res.json()).then(showAll);
+    }
+    function showAll(products){
+        products.forEach(product=>{
+
+                         console.log(product.length);
+                                 const copy = template.cloneNode(true);
+            copy.querySelector("h2").textContent = product.title.rendered;
+            //this part is going to fetch images in the responsive way, in the conditions you have three sizes of the screen
+        if (window.matchMedia("(max-width: 700px)").matches) {
+    copy.querySelector("img").src = product._embedded["wp:featuredmedia"]["0"].media_details.sizes.medium.source_url;
+}
+else if (window.matchMedia('(min-width:701px) and (max-width: 1000px)').matches){
+
+ copy.querySelector("img").style.display="none";
+
+
+}   else {
+                  copy.querySelector("img").src = product._embedded["wp:featuredmedia"]["0"].media_details.sizes.thumbnail.source_url;
+
+            }
+
+
+
+
+            parent.appendChild(copy);
+    })}
+
+    getProducts();
+
+
+    </script>
+
      
        
 </body>
