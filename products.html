@@ -23,6 +23,7 @@
             <a href="" class="onas">O NAS</a>
        
      </div>
+        <nav></nav>
      
     </div>
     <template id="templateProducts">
@@ -58,20 +59,61 @@
     let parent = document.querySelector("main");
 var n=1;
     let baselink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/product?_embed&page=";
+    let params = new URLSearchParams(window.location.search);
+    let catID = params.get("catid");
+    let catlink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/categories/";
+    let nav = document.querySelector("nav");
 
-    //this even listener is connected to the button
+
+    if(catID){
+        loadByCats();
+    }else{
+        getProducts();
+    }
+
+    function getCats(){
+        fetch(catlink).then(res=>res.json()).then(showCats);
+    }
+
+    function showCats(categories){
+        categories.forEach(cat=>
+                          {
+            let newNavlink = document.createElement("a");
+            newNavlink.textContent = cat.name;
+            newNavlink.href = "?catid=" + cat.id;
+            if(cat.name=="Uncategorized"){
+                newNavlink.style.display="none";
+            }
+             nav.appendChild(newNavlink);
+
+        }
+                          )
+        let allLink = document.createElement("a");
+            allLink.textContent = "Wszystkie";
+            allLink.href = "products.html";
+                  nav.appendChild(allLink);
+
+
+    }
+
+
+    function loadByCats(){
+        fetch("http://angadesign.dk/exam/wordpress/wp-json/wp/v2/product?_embed&categories=" + catID).then(res=>res.json()).then(showAll);
+    }
+
+
+
+    //this below is listener is connected to the button
    document.querySelector("#loadmore").addEventListener("click", adding);
 
     //here you can see a simple counter for n, which represents number of the page that will be altered in URL, from where we are fetching our data, I changed in wordpress settings the number of posts displayed on one page to 10
     function adding(){
         n++;
-        listening();
-        //function listening will activate the fetching AGAIN depending on how many clicks were done to the button, if it's zero, it's fetching with the default value of n, so "1", so it's fetching data from the first page
-    }
-    function listening(){
         getProducts();
-
+        //function will activate the fetching AGAIN depending on how many clicks were done to the button, if it's zero, it's fetching with the default value of n, so "1", so it's fetching data from the first page
     }
+
+
 
 
 
@@ -106,8 +148,8 @@ else if (window.matchMedia('(min-width:701px) and (max-width: 1000px)').matches)
 
     })}
 
-    //here instead of activating fetching we activate listening, which controls the page, we are fetching from
-listening();
+   getCats();
+
 
     </script>
 
