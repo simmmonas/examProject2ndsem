@@ -26,9 +26,9 @@
         <nav></nav>
      
     </div>
-    <template id="templateProducts">
-           <img src="" alt="">
-            <h2 class="title">Title</h2>
+    <template id="templateProducts"><a href="" id="imglink">
+        <img src="" alt=""></a>
+        <a href="" id="titlelink"><h2 class="title">Title</h2></a>
         </template>
     
     <main></main><button id="loadmore">Load more</button>
@@ -63,6 +63,8 @@ var n=1;
     let catID = params.get("catid");
     let catlink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/categories/";
     let nav = document.querySelector("nav");
+    let imglink = document.querySelector("#imglink");
+    let titlelink = document.querySelector("#titlelink");
 
 
     if(catID){
@@ -143,6 +145,8 @@ else if (window.matchMedia('(min-width:701px) and (max-width: 1000px)').matches)
 
             }
 
+            copy.querySelector("#imglink").href = "details.html?id=" + product.id;
+            copy.querySelector("#titlelink").href = "details.html?id=" + product.id;
 
             parent.appendChild(copy);
 
