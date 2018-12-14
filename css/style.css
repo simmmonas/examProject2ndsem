@@ -22,9 +22,9 @@ body,
     /*    padding-left: 4vw;
     padding-right: 4vw;
     padding-top: 4vh;
-    padding-bottom: 4vh; */
-    padding: 10px;
-    width: 45vh;
+    padding-bottom: 4vh; CAN'T CENTER WITH THAT' */
+   /* padding: 10px; DOING PADDING FOR WHOLE HTML */
+    /*width: 45vh;*/
     height: 40vh;
     /* overflow-x: hidden; */
     /* overflow-y: hidden; */
@@ -33,6 +33,7 @@ body,
 .slider_wrap {
     position: relative;
     padding: 5px;
+    margin-top: 3em;
 }
 
 .slide {
@@ -83,12 +84,10 @@ body,
 
 #logo {
     width: 100vw;
-    padding: 10px;
+
 }
 
-.menubar a {
-    text-decoration: none;
-}
+
 
 
 /*MOBILE GRID AREA INDEX*/
@@ -97,13 +96,18 @@ body,
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto;
-    grid-template-areas: "logo" "menubar" "slider_wrap" "news" "video" "about_products" "footer";
+    grid-template-areas: "logo" "menubar" "slider_wrap" "news" "video" "about_products" ;
     align-items: center;
     text-align: center;
 }
 
 .logo {
     grid-area: logo;
+    background-image: url(logo%20PL6.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 55px;
+
 }
 
 .menubar {
@@ -127,9 +131,6 @@ body,
     grid-area: about_products;
 }
 
-.footer {
-    grid-area: footer;
-}
 
 
 #menubar {
@@ -140,6 +141,19 @@ body,
     grid-template-areas: "glowna" "produkty" "onas";
     text-align: center;
     padding: 10px;
+    font-size: 13px;
+    margin-top: 2.5em;
+}
+
+.menubar a {
+    text-decoration: none;
+    color: #707070;
+}
+
+#produkty {
+    border-left: 1px solid #707070;
+    border-right: 1px solid #707070;
+    text-align: center;
 }
 
 
@@ -154,4 +168,58 @@ body,
    
     grid-template-areas: "news";
     text-align: center;
+    margin: 2em 1em 2em 1em;
+}
+
+footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: 12px;
+    background-color: #EAEAEA;
+    padding: 1em;
+    border-top: 0.5px solid #707070;
+    text-align: left;
+}
+
+
+
+
+/* -----------------------MOBILE GRID PRODUCTS------------------------*/
+
+.wrapperproducts{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "logo"
+                        "menubar"
+                        "products"
+                        "loadbut";
+
+}
+
+
+.products{text-align: center;
+padding-top: 3em;
+
+}
+
+.title {
+    border: solid 0.5px #707070;
+    font-size: 14px;
+    padding: 1em;
+        margin: 1em 2em 3em 2em;
+}
+.loadbut{grid-area: loadbut;
+text-align: center;}
+
+#loadmore{
+    background-color: white;
+    color: #707070;
+    border: none;
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 3em;
+
+
+
 }
