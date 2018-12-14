@@ -1,3 +1,6 @@
+  * {
+       box-sizing: border-box;
+   }
 body {
     font-family: 'Open Sans', sans-serif;
     color: darkgrey;
@@ -192,6 +195,7 @@ footer{
     grid-template-rows: auto;
     grid-template-areas: "logo"
                         "menubar"
+                         "cats"
                         "products"
                         "loadbut";
 
@@ -223,3 +227,47 @@ text-align: center;}
 
 
 }
+
+.cats{
+    grid-area: cats;
+}
+
+
+/* -----------------------DESKTOP GRID PRODUCTS------------------------*/
+
+@media (min-width: 850px) {
+
+    /* ~~~~~~~~~~PRODUCTS~~~~~~~~~~~~~ */
+    .wrapperproducts{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "logo"
+                        "menubar"
+                        "maincontent"
+                        "loadbut";
+
+}
+    #produkty{
+        border: none;
+    }
+
+    .maincontent{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        grid-template-areas: "cats products"
+}
+    .title{
+        display: none;
+    }
+    .products {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 1em;
+        margin: 2em;
+
+    }
+
+    .maincontent {
+        grid-area: maincontent;
+    }
