@@ -68,14 +68,14 @@ body,
 
 #arrow-left {
     border-width: 10px 15px 10px 0;
-    border-color: transparent #fff transparent transparent;
+    border-color: transparent black transparent transparent;
     left: 0;
     margin-left: 6vw;
 }
 
 #arrow-right {
     border-width: 10px 0 10px 15px;
-    border-color: transparent transparent transparent #fff;
+    border-color: transparent transparent transparent black;
     right: 0;
     margin-right: 2vw;
 }

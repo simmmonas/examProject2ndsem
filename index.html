@@ -86,27 +86,56 @@
     <script>
         let left = document.querySelector("#arrow-left");
         let right = document.querySelector("#arrow-right");
-        let baselink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/media";
+        let baselink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/media?per_page=100";
         let files = new Array();
+        let manual = false;
+
+let i;
+            i=2;
+        left.addEventListener("click", minus);
+        function minus(){
+             manual = true;
+            console.log(i);
+            i--;
+            getImages();
 
 
+        }
+right.addEventListener("click", plus);
+        function plus(){
+             manual = true;
+            console.log(i);
+            i++;
+            getImages();
 
+
+        }
 
         function getImages() {
             fetch(baselink).then(res => res.json()).then(showImages);
         }
 
         function showImages(images) {
-            let i;
-            i=2;
+            if(i==0){
+                i=1;
+            }
+            if(i==100){
+                i=1;
+            }
+            console.log(i);
             files[i] = images[i].media_details.sizes.medium.source_url;
 
-            document.getElementById("scroll").src = files[i];
-
+        document.getElementById("scroll").src = files[i];
+            if(manual==false){
+timeout();
             }
 
 
-
+        if(manual==true){
+            setTimeout(function(){manual=false;timeout();},2000);
+        }}
+function timeout(){
+        setTimeout(function(){i++, getImages();}, 2500);}
         getImages();
 
     </script>
