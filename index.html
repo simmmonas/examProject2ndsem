@@ -29,14 +29,14 @@
 
 
     <img id="scroll">
+<template>
 
-        <div class="news">
 
             <h1>Długo wyczekiwane kalendarze na 2019 rok już są!</h1>
             <p> Wszystkim zainteresowanym gorąco polecamy! Kalendarze są w płóciennej, twardej oprawie w formacie A5. Układ kalendarza jest tygodniowy, a ponadto wewnątrz znajdują się: numery tygodni, rozpiska miesięczna oraz miejsce na notatki. Polecamy wszystkim, którzy cenią 100% ręczną robotę. Cena to jedyne 110 zł + kw. Wszystkich chętnych zapraszamy do składania zamówień!</p>
 
 
-        </div>
+ </template><div class="news"></div>
         <div class="video"></div>
         <div class="about_products"></div>
        <footer><div id="left">
@@ -71,6 +71,9 @@
         let manual = false;
         let i;
             i=1;
+        var x = window.matchMedia("(max-width: 700px)");
+         let template = document.querySelector("template").content;
+
 
 
         //swiping functionality taken from Alan's example//
@@ -130,7 +133,9 @@
         function showImages(images) {
             console.log(i);
           if(images[i]){
+              if(x.matches){
             files[i] = images[i]._embedded["wp:featuredmedia"]["0"].media_details.sizes.medium.source_url;}
+          else{files[i] = images[i]._embedded["wp:featuredmedia"]["0"].media_details.sizes.medium_large.source_url;}}
             else {
                 i=1;
             }
@@ -150,7 +155,22 @@ timeout();
 function timeout(){
         setTimeout(function(){
                               i++, getImages();}, 3000);}
+         function getNews() {
+            fetch(baselink).then(res => res.json()).then(showNews);
+        }
+
+        function showNews(news){
+               let copy = template.cloneNode(true);
+            news.forEach(post=>{
+            copy.querySelector("h1").textContent = post.title.rendered;
+            copy.querySelector("p").innerHTML = post.content.rendered;})
+            let parent = document.querySelector(".news");
+            parent.appendChild(copy);
+
+        }
+        getNews();
         getImages();
+
 
     </script>
 </body>
