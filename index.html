@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-
-<html lang="">
+<html lang="pl">
 
 <head>
     <meta charset="utf-8">
@@ -12,35 +11,24 @@
 
 
 <body>
-
-    <div class="wrapper_index">
-        <div class="logo">
-            <img src="img/logo.jpg" id="logo" alt="Logo Pracowni Leśnej 6">
+   <div class="wrapper_index">
+    <div class="logo">
+        <img src="img/logo.jpg" id="logo" alt="Logo Pracowni Leśnej 6">
+    </div>
+    <div id="menubar" class="menubar">
+        <div class="glowna">
+            <a href="glowna" class="href">GŁÓWNA</a>
         </div>
-        <div id="menubar" class="menubar">
-            <div class="glowna">
-                <a href="index.html" class="href">GŁÓWNA</a>
-            </div>
-            <div class="produkty">
-                <a href="products.html" class="produkty">REALIZACJE</a>
-            </div>
-            <div class="onas">
-                <a href="" class="onas">O NAS</a>
-            </div>
+        <div class="produkty">
+            <a href="" class="produkty">PRODUKTY</a>
         </div>
+        <div class="onas">
+            <a href="" class="onas">O NAS</a>
+        </div>
+    </div>
 
 
-
-
-
-
-
-                <img id="scroll" class="slider_wrap">
-
-
-
-
-
+    <img id="scroll">
 
         <div class="news">
 
@@ -51,22 +39,29 @@
         </div>
         <div class="video"></div>
         <div class="about_products"></div>
+       <footer><div id="left">
+          <p>  <h4>tel.</h4>+48 503 491 825</p>
+            <p3>pracownialesna6@gmail.com
+</p3> <h4>instagram</h4><p3>pracownialesna6</p3>
+            <h4>sklep online</h4><p4><a4>www.etsy.com/shop/PracowniaLesna6</a4>
+</p4>
 
-      <footer>
-            <div class="contactinfo">
-                <p>pracownialesna6@gmail.com </p>
-                <p> +48 503 491 825 </p>
-                <p> pn - pt: 10:00 - 18:00 </p>
+            <div id="right">
+            <h4>Godziny otwarcia:</h4>
+<p5>poniedziałek-piątek: 10:00 - 18:00</p5>
+                <p>sobota, niedziela - nieczynne</p>
+
+
             </div>
-            <div class="fb">icon</div>
-            <div class="insta">icon</div>
-        </footer>
+
+    </footer>
 
 
 
 
 
-    </div>
+</div>
+
 
 
     <script>
@@ -74,6 +69,9 @@
         let baselink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/news?_embed";
         let files = new Array();
         let manual = false;
+        let i;
+            i=1;
+
 
         //swiping functionality taken from Alan's example//
         	var touchstartX = 0;
@@ -103,13 +101,11 @@
 			}
         //end of Alan's script//
 
-let i;
-            i=1;
+
 
         function minus(){
              manual = true;
             console.log(i);
-            i--;
             i--;
             getImages();
 
@@ -119,14 +115,13 @@ let i;
         function plus(){
              manual = true;
             console.log(i);
-            if(i==100){
-                i=1;
-            }
             i++;
             getImages();
 
+}
 
-        }
+
+
 
         function getImages() {
             fetch("http://angadesign.dk/exam/wordpress/wp-json/wp/v2/slider_images?_embed").then(res => res.json()).then(showImages);
@@ -134,7 +129,11 @@ let i;
 
         function showImages(images) {
             console.log(i);
-            files[i] = images[i]._embedded["wp:featuredmedia"]["0"].media_details.sizes.medium.source_url;
+          if(images[i]){
+            files[i] = images[i]._embedded["wp:featuredmedia"]["0"].media_details.sizes.medium.source_url;}
+            else {
+                i=1;
+            }
 
                 scroll.src = files[i];
 
@@ -149,7 +148,8 @@ timeout();
         }
 
 function timeout(){
-        setTimeout(function(){i++, getImages();}, 3000);}
+        setTimeout(function(){
+                              i++, getImages();}, 3000);}
         getImages();
 
     </script>
