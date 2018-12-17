@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-<html lang="pl">
-=======
+
 <html lang="">
->>>>>>> origin/simonas
 
 <head>
     <meta charset="utf-8">
@@ -37,9 +34,9 @@
 
 
 
-    <div id="arrow-left" class="arrow"></div>
-                <img id="scroll">
-                <div id="arrow-right" class="arrow"></div>
+
+                <img id="scroll" class="slider_wrap">
+
 
 
 
@@ -73,15 +70,42 @@
 
 
     <script>
-        let left = document.querySelector("#arrow-left");
-        let right = document.querySelector("#arrow-right");
+        let scroll = document.querySelector("#scroll");
         let baselink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/media?per_page=100";
         let files = new Array();
         let manual = false;
 
+        //swiping functionality taken from Alan's example//
+        	var touchstartX = 0;
+			var touchstartY = 0;
+			var touchendX = 0;
+			var touchendY = 0;
+        scroll.addEventListener('touchstart', function(event) {
+				touchstartX = event.changedTouches[0].screenX;
+				touchstartY = event.changedTouches[0].screenY;
+			}, false);
+
+			scroll.addEventListener('touchend', function(event) {
+				touchendX = event.changedTouches[0].screenX;
+				touchendY = event.changedTouches[0].screenY;
+				handleGesture();
+			}, false);
+
+			function handleGesture() {
+				var swiped = 'swiped: ';
+				if (touchendX < touchstartX) {
+					minus();
+				}
+				if (touchendX > touchstartX) {
+				plus();
+				}
+
+			}
+        //end of Alan's script//
+
 let i;
             i=2;
-        left.addEventListener("click", minus);
+
         function minus(){
              manual = true;
             console.log(i);
@@ -90,7 +114,7 @@ let i;
 
 
         }
-right.addEventListener("click", plus);
+
         function plus(){
              manual = true;
             console.log(i);
@@ -124,7 +148,7 @@ timeout();
             setTimeout(function(){manual=false;timeout();},2000);
         }}
 function timeout(){
-        setTimeout(function(){i++, getImages();}, 3500);}
+        setTimeout(function(){i++, getImages();}, 4000);}
         getImages();
 
     </script>
