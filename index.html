@@ -71,7 +71,7 @@
 
     <script>
         let scroll = document.querySelector("#scroll");
-        let baselink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/media?per_page=100";
+        let baselink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/news?_embed";
         let files = new Array();
         let manual = false;
 
@@ -104,11 +104,12 @@
         //end of Alan's script//
 
 let i;
-            i=2;
+            i=1;
 
         function minus(){
              manual = true;
             console.log(i);
+            i--;
             i--;
             getImages();
 
@@ -118,6 +119,9 @@ let i;
         function plus(){
              manual = true;
             console.log(i);
+            if(i==100){
+                i=1;
+            }
             i++;
             getImages();
 
@@ -125,30 +129,27 @@ let i;
         }
 
         function getImages() {
-            fetch(baselink).then(res => res.json()).then(showImages);
+            fetch("http://angadesign.dk/exam/wordpress/wp-json/wp/v2/slider_images?_embed").then(res => res.json()).then(showImages);
         }
 
         function showImages(images) {
-            if(i==0){
-                i=1;
-            }
-            if(i==100){
-                i=1;
-            }
             console.log(i);
-            files[i] = images[i].media_details.sizes.medium.source_url;
+            files[i] = images[i]._embedded["wp:featuredmedia"]["0"].media_details.sizes.medium.source_url;
 
-        document.getElementById("scroll").src = files[i];
+                scroll.src = files[i];
+
+
             if(manual==false){
 timeout();
-            }
+            }}
 
 
         if(manual==true){
             setTimeout(function(){manual=false;timeout();},2000);
-        }}
+        }
+
 function timeout(){
-        setTimeout(function(){i++, getImages();}, 4000);}
+        setTimeout(function(){i++, getImages();}, 3000);}
         getImages();
 
     </script>
