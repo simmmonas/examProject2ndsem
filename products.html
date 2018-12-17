@@ -14,39 +14,24 @@
     </div>
     <div id="menubar" class="menubar">
         <div class="glowna">
-            <a href="index.html" class="href">GŁÓWNA</a>
+            <a href="glowna" class="href">GŁÓWNA</a>
         </div>
-<<<<<<< HEAD
-        <div class="produkty">
-            <a href="products.html" class="produkty">REALIZACJE</a>
-=======
         <div id="produkty" class="produkty">
             <a href="" class="produkty">PRODUKTY</a>
->>>>>>> origin/master
         </div>
         <div class="onas">
             <a href="" class="onas">O NAS</a>
         </div>
        
      </div>
-<<<<<<< HEAD
-
-     
-    </div>
-          <nav></nav>
-    <template id="templateProducts"><a href="" id="imglink">
-        <img src="" alt=""></a>
-        <a href="" id="titlelink"><h2 class="title">Title</h2></a>
-=======
      <div class="maincontent">
-
+     
      <div class="cats"> ?categories fetched from wp? </div>
 
 
    <template id="templateProducts">
            <img src="" alt="">
             <h2 class="title">Title</h2>
->>>>>>> origin/master
         </template>
 
     
@@ -81,63 +66,17 @@
     let parent = document.querySelector("main");
 var n=1;
     let baselink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/product?_embed&page=";
-    let params = new URLSearchParams(window.location.search);
-    let catID = params.get("catid");
-    let catlink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/categories/";
-    let nav = document.querySelector("nav");
-    let imglink = document.querySelector("#imglink");
-    let titlelink = document.querySelector("#titlelink");
 
-
-    if(catID){
-        loadByCats();
-    }else{
-        getProducts();
-    }
-
-    function getCats(){
-        fetch(catlink).then(res=>res.json()).then(showCats);
-    }
-
-    function showCats(categories){
-        categories.forEach(cat=>
-                          {
-            let newNavlink = document.createElement("a");
-            newNavlink.textContent = cat.name;
-            newNavlink.href = "?catid=" + cat.id;
-            if(cat.name=="Uncategorized"){
-                newNavlink.style.display="none";
-            }
-             nav.appendChild(newNavlink);
-
-        }
-                          )
-        let allLink = document.createElement("a");
-            allLink.textContent = "Wszystkie";
-            allLink.href = "products.html";
-                  nav.appendChild(allLink);
-
-
-    }
-
-
-    function loadByCats(){
-        fetch("http://angadesign.dk/exam/wordpress/wp-json/wp/v2/product?_embed&categories=" + catID).then(res=>res.json()).then(showAll);
-    }
-
-
-
-    //this below is listener is connected to the button
    document.querySelector("#loadmore").addEventListener("click", adding);
 
-    //here you can see a simple counter for n, which represents number of the page that will be altered in URL, from where we are fetching our data, I changed in wordpress settings the number of posts displayed on one page to 10
     function adding(){
         n++;
-        getProducts();
-        //function will activate the fetching AGAIN depending on how many clicks were done to the button, if it's zero, it's fetching with the default value of n, so "1", so it's fetching data from the first page
+        listening();
     }
+    function listening(){
+        getProducts();
 
-
+    }
 
 
 
@@ -167,15 +106,12 @@ else if (window.matchMedia('(min-width:701px) and (max-width: 1000px)').matches)
 
             }
 
-            copy.querySelector("#imglink").href = "details.html?id=" + product.id;
-            copy.querySelector("#titlelink").href = "details.html?id=" + product.id;
 
             parent.appendChild(copy);
 
     })}
 
-   getCats();
-
+listening();
 
     </script>
 
