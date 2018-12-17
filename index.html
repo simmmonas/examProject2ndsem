@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pl">
+
+<html lang="">
 
 <head>
     <meta charset="utf-8">
@@ -11,49 +12,35 @@
 
 
 <body>
-   <div class="wrapper_index">
-    <div class="logo">
-        <img src="img/logo.jpg" id="logo" alt="Logo Pracowni Leśnej 6">
-    </div>
-    <div id="menubar" class="menubar">
-        <div class="glowna">
-            <a href="glowna" class="href">GŁÓWNA</a>
+
+    <div class="wrapper_index">
+        <div class="logo">
+            <img src="img/logo.jpg" id="logo" alt="Logo Pracowni Leśnej 6">
         </div>
-        <div class="produkty">
-            <a href="" class="produkty">PRODUKTY</a>
+        <div id="menubar" class="menubar">
+            <div class="glowna">
+                <a href="index.html" class="href">GŁÓWNA</a>
+            </div>
+            <div class="produkty">
+                <a href="products.html" class="produkty">REALIZACJE</a>
+            </div>
+            <div class="onas">
+                <a href="" class="onas">O NAS</a>
+            </div>
         </div>
-        <div class="onas">
-            <a href="" class="onas">O NAS</a>
-        </div>
-    </div>
 
 
-    <div class="slider_wrap">
-
-        <div id="arrow-left" class="arrow"></div>
-
-        <div id="slider">
 
 
-            <div class="slide slide1">
-                <div class="slide-content">
 
-                </div>
-            </div>
-            <div class="slide slide2">
-                <div class="slide-content">
 
-                </div>
-            </div>
-            <div class="slide slide3">
-                <div class="slide-content">
 
-                </div>
-            </div>
+                <img id="scroll" class="slider_wrap">
 
-            <div id="arrow-right" class="arrow"></div>
-        </div>
-            </div>
+
+
+
+
 
         <div class="news">
 
@@ -64,35 +51,107 @@
         </div>
         <div class="video"></div>
         <div class="about_products"></div>
-       <footer><div id="left">
-          <p>  <h4>tel.</h4>+48 503 491 825</p>
-            <p3>pracownialesna6@gmail.com
-</p3> <h4>instagram</h4><p3>pracownialesna6</p3>
-            <h4>sklep online</h4><p4><a4>www.etsy.com/shop/PracowniaLesna6</a4>
-</p4>
 
-
+      <footer>
+            <div class="contactinfo">
+                <p>pracownialesna6@gmail.com </p>
+                <p> +48 503 491 825 </p>
+                <p> pn - pt: 10:00 - 18:00 </p>
             </div>
-
-
-            <div id="right">
-            <h4>Godziny otwarcia:</h4>
-<p5>poniedziałek-piątek: 10:00 - 18:00</p5>
-                <p>sobota, niedziela - nieczynne</p>
-
-
-            </div>
-
-    </footer>
+            <div class="fb">icon</div>
+            <div class="insta">icon</div>
+        </footer>
 
 
 
 
 
-</div>
+    </div>
 
 
-    <script src="js/main.js"></script>
+    <script>
+        let scroll = document.querySelector("#scroll");
+        let baselink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/media?per_page=100";
+        let files = new Array();
+        let manual = false;
+
+        //swiping functionality taken from Alan's example//
+        	var touchstartX = 0;
+			var touchstartY = 0;
+			var touchendX = 0;
+			var touchendY = 0;
+        scroll.addEventListener('touchstart', function(event) {
+				touchstartX = event.changedTouches[0].screenX;
+				touchstartY = event.changedTouches[0].screenY;
+			}, false);
+
+			scroll.addEventListener('touchend', function(event) {
+				touchendX = event.changedTouches[0].screenX;
+				touchendY = event.changedTouches[0].screenY;
+				handleGesture();
+			}, false);
+
+			function handleGesture() {
+				var swiped = 'swiped: ';
+				if (touchendX < touchstartX) {
+					minus();
+				}
+				if (touchendX > touchstartX) {
+				plus();
+				}
+
+			}
+        //end of Alan's script//
+
+let i;
+            i=2;
+
+        function minus(){
+             manual = true;
+            console.log(i);
+            i--;
+            getImages();
+
+
+        }
+
+        function plus(){
+             manual = true;
+            console.log(i);
+            i++;
+            getImages();
+
+
+        }
+
+        function getImages() {
+            fetch(baselink).then(res => res.json()).then(showImages);
+        }
+
+        function showImages(images) {
+            if(i==0){
+                i=1;
+            }
+            if(i==100){
+                i=1;
+            }
+            console.log(i);
+            files[i] = images[i].media_details.sizes.medium.source_url;
+
+        document.getElementById("scroll").src = files[i];
+            if(manual==false){
+timeout();
+            }
+
+
+        if(manual==true){
+            setTimeout(function(){manual=false;timeout();},2000);
+        }}
+function timeout(){
+        setTimeout(function(){i++, getImages();}, 4000);}
+        getImages();
+
+    </script>
 </body>
 
 </html>
