@@ -5,32 +5,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>Produkty</title>
-
-    <style>
-        .big {
-            width: 100%;
-            height: 100%;
-
-        }
-
-        .small {
-            width: 20vw;
-            display: inline;
-            padding: 0;
-        }
-
-        li {
-            list-style: none;
-        }
-
-    </style>
+    <title>Realizacja</title>
 
 
 
 </head>
 
 <body>
+
+    <style>
+        #arrow-left {
+            background-color: red;
+            width: 10%;
+            height: 40%;
+        }
+          #arrow-right {
+            background-color: red;
+            width: 10%;
+            height: 40%;
+        }
+
+    </style>
+
+
     <div id="wrapperproducts">
         <div class="logo">
             <img src="img/logo.jpg" id="logo" alt="Logo Pracowni Leśnej 6">
@@ -46,8 +43,9 @@
                 <a href="" class="onas">O NAS</a>
 
             </div>
-
+<div id="arrow-left"></div>
  <img id="scroll">
+            <div id="arrow-right"></div>
         </div>
         <template id="templateProducts">
 
@@ -76,6 +74,9 @@
         let files = new Array();
         let i;
         i=1;
+        var x = window.matchMedia("(max-width: 800px)");
+        let arrowLeft = document.querySelector("#arrow-left");
+        let arrowRight = document.querySelector("#arrow-right");
 
           //swiping functionality taken from Alan's example//
         	var touchstartX = 0;
@@ -105,13 +106,12 @@
             copy.querySelector("h2").textContent = product.title.rendered;
             copy.querySelector("h3").textContent = product.acf.date;
             copy.querySelector("#description").innerHTML = product.content.rendered;
+            document.title = product.title.rendered;
               parent.appendChild(copy);
 
         }
 
         function showImg(product){
-
-
 //more of Alan's script//
 
 
@@ -140,6 +140,10 @@
 
 //end of Alan's script
 
+            if(x.matches){
+                console.log(i);
+                arrowLeft.style.display="none";
+                arrowRight.style.display="none";
             files[1] = product._embedded["wp:featuredmedia"]["0"].media_details.sizes.medium.source_url;
             if(product.acf.img1){
                 files[2] = product.acf.img1.sizes.medium;
@@ -165,7 +169,37 @@
             if(product.acf.img8){
                 files[8] = product.acf.img8.sizes.medium;
             }
-            if(i>=8){
+            }
+            else{
+                arrowLeft.addEventListener("click", minus);
+                arrowRight.addEventListener("click", plus);
+                  files[1] = product._embedded["wp:featuredmedia"]["0"].media_details.sizes.full.source_url;
+            if(product.acf.img1){
+                files[2] = product.acf.img1.sizes.medium_large;
+            }
+            if(product.acf.img2){
+                files[2] = product.acf.img2.sizes.medium_large;
+            }
+            if(product.acf.img3){
+                files[3] = product.acf.img3.sizes.medium_large;
+            }
+            if(product.acf.img4){
+                files[4] = product.acf.img4.sizes.medium_large;
+            }
+            if(product.acf.img5){
+                files[5] = product.acf.img5.sizes.medium_large;
+            }
+            if(product.acf.img6){
+                files[6] = product.acf.img6.sizes.medium_large;
+            }
+            if(product.acf.img7){
+                files[7] = product.acf.img7.sizes.medium_large;
+            }
+            if(product.acf.img8){
+                files[8] = product.acf.img8.sizes.medium_large;
+            }
+            }
+            if(i==9){
                 i=1;
             }
 
@@ -174,6 +208,9 @@
                getImg();
             }
            function minus(){
+               if(i==1){
+                   i=2;
+               }
                 i--;
                getImg();
             }
