@@ -1,27 +1,178 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="pl">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pracownia Lesna</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Pracownia Leśna 6</title>
 </head>
 
-<body>
-    <div class="main-wrapper">
-        <div class="logo">
-        <img src="" alt="logo"> 
-        </div>
-        <div class="navbar"></div>
-        <div class="slideshow-container"></div>
-        <div class="news"></div>
-        <div class="video"></div>
-        <div class="video-des"></div>
-        <div class="footer"></div>
-    </div>
-    
-    
 
+<body>
+   <div class="wrapper_index">
+    <div class="logo">
+        <img src="img/logo.jpg" id="logo" alt="Logo Pracowni Leśnej 6">
+    </div>
+    <div id="menubar" class="menubar">
+        <div class="glowna">
+            <a href="index.html" class="href">GŁÓWNA</a>
+        </div>
+        <div class="produkty">
+            <a href="products.html" class="produkty">Realizacje</a>
+        </div>
+        <div class="onas">
+            <a href="about.html" class="onas">O NAS</a>
+        </div>
+    </div>
+
+
+    <img id="scroll">
+<template>
+
+
+            <h1>Długo wyczekiwane kalendarze na 2019 rok już są!</h1>
+            <p> Wszystkim zainteresowanym gorąco polecamy! Kalendarze są w płóciennej, twardej oprawie w formacie A5. Układ kalendarza jest tygodniowy, a ponadto wewnątrz znajdują się: numery tygodni, rozpiska miesięczna oraz miejsce na notatki. Polecamy wszystkim, którzy cenią 100% ręczną robotę. Cena to jedyne 110 zł + kw. Wszystkich chętnych zapraszamy do składania zamówień!</p>
+
+
+ </template><div class="news"></div>
+        <div class="video"></div>
+        <div class="about_products"></div>
+       <footer><div id="left">
+          <p>  <h4>tel.</h4>+48 503 491 825</p>
+            <p3>pracownialesna6@gmail.com
+</p3> <h4>instagram</h4><p3>pracownialesna6</p3>
+            <h4>sklep online</h4><p4><a4>www.etsy.com/shop/PracowniaLesna6</a4>
+</p4>
+
+            <div id="right">
+            <h4>Godziny otwarcia:</h4>
+<p5>poniedziałek-piątek: 10:00 - 18:00</p5>
+                <p>sobota, niedziela - nieczynne</p>
+
+
+            </div>
+
+    </footer>
+
+
+
+
+
+</div>
+
+
+
+    <script>
+        let scroll = document.querySelector("#scroll");
+        let baselink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/news?_embed";
+        let files = new Array();
+        let manual = false;
+        let i;
+            i=1;
+        var x = window.matchMedia("(max-width: 700px)");
+         let template = document.querySelector("template").content;
+
+
+
+        //swiping functionality taken from Alan's example//
+        	var touchstartX = 0;
+			var touchstartY = 0;
+			var touchendX = 0;
+			var touchendY = 0;
+        scroll.addEventListener('touchstart', function(event) {
+				touchstartX = event.changedTouches[0].screenX;
+				touchstartY = event.changedTouches[0].screenY;
+			}, false);
+
+			scroll.addEventListener('touchend', function(event) {
+				touchendX = event.changedTouches[0].screenX;
+				touchendY = event.changedTouches[0].screenY;
+				handleGesture();
+			}, false);
+
+			function handleGesture() {
+				var swiped = 'swiped: ';
+				if (touchendX < touchstartX) {
+					minus();
+				}
+				if (touchendX > touchstartX) {
+				plus();
+				}
+
+			}
+        //end of Alan's script//
+
+
+
+        function minus(){
+             manual = true;
+            console.log(i);
+            i--;
+            getImages();
+
+
+        }
+
+        function plus(){
+             manual = true;
+            console.log(i);
+            i++;
+            getImages();
+
+}
+
+
+
+
+        function getImages() {
+            fetch("http://angadesign.dk/exam/wordpress/wp-json/wp/v2/slider_images?_embed").then(res => res.json()).then(showImages);
+        }
+
+        function showImages(images) {
+            console.log(i);
+          if(images[i]){
+              if(x.matches){
+            files[i] = images[i]._embedded["wp:featuredmedia"]["0"].media_details.sizes.medium.source_url;}
+          else{files[i] = images[i]._embedded["wp:featuredmedia"]["0"].media_details.sizes.medium_large.source_url;}}
+            else {
+                i=1;
+            }
+
+                scroll.src = files[i];
+
+
+            if(manual==false){
+timeout();
+            }}
+
+
+        if(manual==true){
+            setTimeout(function(){manual=false;timeout();},2000);
+        }
+
+function timeout(){
+        setTimeout(function(){
+                              i++, getImages();}, 3000);}
+         function getNews() {
+            fetch(baselink).then(res => res.json()).then(showNews);
+        }
+
+        function showNews(news){
+               let copy = template.cloneNode(true);
+            news.forEach(post=>{
+            copy.querySelector("h1").textContent = post.title.rendered;
+            copy.querySelector("p").innerHTML = post.content.rendered;})
+            let parent = document.querySelector(".news");
+            parent.appendChild(copy);
+
+        }
+        getNews();
+        getImages();
+
+
+    </script>
 </body>
 
 </html>
