@@ -168,7 +168,11 @@ body,
     margin-left: 10px;
     margin-right: 10px;
     grid-auto-rows: auto;
+<<<<<<< HEAD
 
+=======
+   
+>>>>>>> anas
     grid-template-areas: "news";
     text-align: center;
     margin: 2em 1em 2em 1em;

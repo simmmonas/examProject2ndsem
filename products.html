@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="css/style.css">
+    <title>Realizacje</title>
+</head>
+
+<body>
+    <div id="wrapperproducts">
+     <div class="logo">
+        <img src="img/logo.jpg" id="logo" alt="Logo Pracowni Leśnej 6">
+    </div>
+    <div id="menubar" class="menubar">
+        <div class="glowna">
+            <a href="glowna" class="href">GŁÓWNA</a>
+        </div>
+        <div class="produkty">
+            <a href="" class="produkty">PRODUKTY</a>
+        </div>
+        <div class="onas">
+            <a href="" class="onas">O NAS</a>
+       
+     </div>
+        <nav></nav>
+     
+    </div>
+    <template id="templateProducts"><a href="" id="imglink">
+        <img src="" alt=""></a>
+        <a href="" id="titlelink"><h2 class="title">Title</h2></a>
+        </template>
+    
+    <main></main><button id="loadmore">Load more</button>
+
+        <footer><div id="left">
+            <h2>tel.</h2><p2>+48 503 491 825</p2>
+            <p3>pracownialesna6@gmail.com
+</p3> <h3>instagram</h3><p3>pracownialesna6</p3>
+            <h4>sklep online</h4><p4><a4>www.etsy.com/shop/PracowniaLesna6</a4>
+</p4>
+
+
+            </div>
+
+
+            <div id="right">
+            <h5>Godziny otwarcia:</h5>
+<p5>poniedziałek-piątek: 10:00 - 18:00</p5>
+                <p5>sobota, niedziela - nieczynne</p5>
+
+
+            </div>
+
+    </footer></div>
+
+<script>
+    let template = document.querySelector("#templateProducts").content;
+    let parent = document.querySelector("main");
+var n=1;
+    let baselink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/product?_embed&page=";
+    let params = new URLSearchParams(window.location.search);
+    let catID = params.get("catid");
+    let catlink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/categories/";
+    let nav = document.querySelector("nav");
+    let imglink = document.querySelector("#imglink");
+    let titlelink = document.querySelector("#titlelink");
+
+
+    if(catID){
+        loadByCats();
+    }else{
+        getProducts();
+    }
+
+    function getCats(){
+        fetch(catlink).then(res=>res.json()).then(showCats);
+    }
+
+    function showCats(categories){
+        categories.forEach(cat=>
+                          {
+            let newNavlink = document.createElement("a");
+            newNavlink.textContent = cat.name;
+            newNavlink.href = "?catid=" + cat.id;
+            if(cat.name=="Uncategorized"){
+                newNavlink.style.display="none";
+            }
+             nav.appendChild(newNavlink);
+
+        }
+                          )
+        let allLink = document.createElement("a");
+            allLink.textContent = "Wszystkie";
+            allLink.href = "products.html";
+                  nav.appendChild(allLink);
+
+
+    }
+
+
+    function loadByCats(){
+        fetch("http://angadesign.dk/exam/wordpress/wp-json/wp/v2/product?_embed&categories=" + catID).then(res=>res.json()).then(showAll);
+    }
+
+
+
+    //this below is listener is connected to the button
+   document.querySelector("#loadmore").addEventListener("click", adding);
+
+    //here you can see a simple counter for n, which represents number of the page that will be altered in URL, from where we are fetching our data, I changed in wordpress settings the number of posts displayed on one page to 10
+    function adding(){
+        n++;
+        getProducts();
+        //function will activate the fetching AGAIN depending on how many clicks were done to the button, if it's zero, it's fetching with the default value of n, so "1", so it's fetching data from the first page
+    }
+
+
+
+
+
+    function getProducts(){
+        //so what we are doing different here is going around the wordpress limitation and asking for rest API to show us 100 results per page
+        //however 100 is the max but we have more than 100 items in "products" so we are including also page 2, where is the rest of the items
+        //after reaching 100, this is why the link is so strange
+        fetch(baselink + n).then(res=>res.json()).then(showAll);
+    }
+    function showAll(products){
+        products.forEach(product=>{
+
+                         console.log(product.length);
+                                 const copy = template.cloneNode(true);
+            copy.querySelector("h2").textContent = product.title.rendered;
+            //this part is going to fetch images in the responsive way, in the conditions you have three sizes of the screen
+        if (window.matchMedia("(max-width: 700px)").matches) {
+    copy.querySelector("img").src = product._embedded["wp:featuredmedia"]["0"].media_details.sizes.medium.source_url;
+}
+else if (window.matchMedia('(min-width:701px) and (max-width: 1000px)').matches){
+
+ copy.querySelector("img").style.display="none";
+
+
+}   else {
+                  copy.querySelector("img").src = product._embedded["wp:featuredmedia"]["0"].media_details.sizes.thumbnail.source_url;
+
+            }
+
+            copy.querySelector("#imglink").href = "details.html?id=" + product.id;
+            copy.querySelector("#titlelink").href = "details.html?id=" + product.id;
+
+            parent.appendChild(copy);
+
+    })}
+
+   getCats();
+
+
+    </script>
+
+     
+       
+</body>
+
+</html>

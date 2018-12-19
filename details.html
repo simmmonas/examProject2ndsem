@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Realizacja</title>
+
+
+
+</head>
+
+<body>
+
+    <style>
+        #arrow-left {
+            background-color: red;
+            width: 10%;
+            height: 40%;
+        }
+          #arrow-right {
+            background-color: red;
+            width: 10%;
+            height: 40%;
+        }
+
+    </style>
+
+
+    <div id="wrapperproducts">
+        <div class="logo">
+            <img src="img/logo.jpg" id="logo" alt="Logo Pracowni Leśnej 6">
+        </div>
+        <div id="menubar" class="menubar">
+            <div class="glowna">
+                <a href="index.html" class="href">GŁÓWNA</a>
+            </div>
+            <div class="produkty">
+                <a href="products.html" class="produkty">REALIZACJE</a>
+            </div>
+            <div class="onas">
+                <a href="" class="onas">O NAS</a>
+
+            </div>
+<div id="arrow-left"></div>
+ <img id="scroll">
+            <div id="arrow-right"></div>
+        </div>
+        <template id="templateProducts">
+
+
+
+        <h2 id="title">Title</h2>
+        <h3 id="date">Date</h3>
+        <p id="description"></p>
+        </template>
+
+        <main></main>
+
+        <footer>
+
+
+        </footer>
+    </div>
+
+    <script>
+        let template = document.querySelector("#templateProducts").content;
+        let parent = document.querySelector("main");
+        let baselink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/product/";
+        let params = new URLSearchParams(window.location.search);
+        let id = params.get("id");
+        let imglink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/news?_embed";
+        let files = new Array();
+        let i;
+        i=1;
+        var x = window.matchMedia("(max-width: 800px)");
+        let arrowLeft = document.querySelector("#arrow-left");
+        let arrowRight = document.querySelector("#arrow-right");
+        x.addEventListener("change", showImg);
+
+          //swiping functionality taken from Alan's example//
+        	var touchstartX = 0;
+			var touchstartY = 0;
+			var touchendX = 0;
+			var touchendY = 0;
+
+        //end of Alan's script//
+
+
+
+        function getProducts() {
+            //so what we are doing different here is going around the wordpress limitation and asking for rest API to show us 100 results per page
+            //however 100 is the max but we have more than 100 items in "products" so we are including also page 2, where is the rest of the items
+            //after reaching 100, this is why the link is so strange
+            fetch(baselink + id + "?_embed").then(res => res.json()).then(showAll);
+        }
+
+        function getImg() {
+            fetch(baselink + id + "?_embed").then(res => res.json()).then(showImg);
+        }
+
+        function showAll(product) {
+
+            console.log(product.length);
+            const copy = template.cloneNode(true);
+            copy.querySelector("h2").textContent = product.title.rendered;
+            copy.querySelector("h3").textContent = product.acf.date;
+            copy.querySelector("#description").innerHTML = product.content.rendered;
+            document.title = product.title.rendered;
+              parent.appendChild(copy);
+
+        }
+
+        function showImg(product){
+//more of Alan's script//
+
+
+            let scroll =  document.querySelector("#scroll");
+            scroll.addEventListener('touchstart', function(event) {
+				touchstartX = event.changedTouches[0].screenX;
+				touchstartY = event.changedTouches[0].screenY;
+			}, false);
+
+			scroll.addEventListener('touchend', function(event) {
+				touchendX = event.changedTouches[0].screenX;
+				touchendY = event.changedTouches[0].screenY;
+				handleGesture();
+			}, false);
+
+			function handleGesture() {
+				var swiped = 'swiped: ';
+				if (touchendX < touchstartX) {
+					minus();
+				}
+				if (touchendX > touchstartX) {
+				plus();
+				}
+
+			}
+
+//end of Alan's script
+
+            if(x.matches){
+                console.log(i);
+                arrowLeft.style.display="none";
+                arrowRight.style.display="none";
+            files[1] = product._embedded["wp:featuredmedia"]["0"].media_details.sizes.medium.source_url;
+            if(product.acf.img1){
+                files[2] = product.acf.img1.sizes.medium;
+            }
+            if(product.acf.img2){
+                files[2] = product.acf.img2.sizes.medium;
+            }
+            if(product.acf.img3){
+                files[3] = product.acf.img3.sizes.medium;
+            }
+            if(product.acf.img4){
+                files[4] = product.acf.img4.sizes.medium;
+            }
+            if(product.acf.img5){
+                files[5] = product.acf.img5.sizes.medium;
+            }
+            if(product.acf.img6){
+                files[6] = product.acf.img6.sizes.medium;
+            }
+            if(product.acf.img7){
+                files[7] = product.acf.img7.sizes.medium;
+            }
+            if(product.acf.img8){
+                files[8] = product.acf.img8.sizes.medium;
+            }
+            }
+            else{
+                arrowLeft.addEventListener("click", minus);
+                arrowRight.addEventListener("click", plus);
+                  files[1] = product._embedded["wp:featuredmedia"]["0"].media_details.sizes.full.source_url;
+            if(product.acf.img1){
+                files[2] = product.acf.img1.sizes.medium_large;
+            }
+            if(product.acf.img2){
+                files[2] = product.acf.img2.sizes.medium_large;
+            }
+            if(product.acf.img3){
+                files[3] = product.acf.img3.sizes.medium_large;
+            }
+            if(product.acf.img4){
+                files[4] = product.acf.img4.sizes.medium_large;
+            }
+            if(product.acf.img5){
+                files[5] = product.acf.img5.sizes.medium_large;
+            }
+            if(product.acf.img6){
+                files[6] = product.acf.img6.sizes.medium_large;
+            }
+            if(product.acf.img7){
+                files[7] = product.acf.img7.sizes.medium_large;
+            }
+            if(product.acf.img8){
+                files[8] = product.acf.img8.sizes.medium_large;
+            }
+            }
+            if(i==9){
+                i=1;
+            }
+
+              function plus(){
+                i++;
+               getImg();
+            }
+           function minus(){
+               if(i==1){
+                   i=2;
+               }
+                i--;
+               getImg();
+            }
+
+            scroll.src = files[i];
+        }
+
+
+          getImg();
+
+
+
+        getProducts();
+
+    </script>
+
+
+
+</body>
+
+</html>
