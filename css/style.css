@@ -14,78 +14,10 @@ p {
     font-size: 12px;
 }
 
-/* Slider for mobile*/
-
-body,
-#slider,
-.slider_wrap,
-.slide-content {
-    margin-left: 0;
-    margin-right: 0;
-    /*    padding-left: 4vw;
-    padding-right: 4vw;
-    padding-top: 4vh;
-    padding-bottom: 4vh; CAN'T CENTER WITH THAT' */
-   /* padding: 10px; DOING PADDING FOR WHOLE HTML */
-    /*width: 45vh;*/
-    height: 40vh;
-    /* overflow-x: hidden; */
-    /* overflow-y: hidden; */
+a{
+    color: black;
+    text-decoration: none;
 }
-
-.slider_wrap {
-    position: relative;
-    padding: 5px;
-    margin-top: 3em;
-}
-
-.slide {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.slide1 {
-    background-image: url('../img/1.jpg')
-}
-
-.slide2 {
-    background-image: url('../img/2.jpg')
-}
-
-.slide3 {
-    background-image: url('../img/3.jpg')
-}
-
-
-.arrow {
-    cursor: pointer;
-    position: absolute;
-    top: 45%;
-    margin-top: 25px;
-    width: 0;
-    height: 0;
-    border-style: solid;
-}
-
-
-
-#arrow-left {
-    border-width: 10px 15px 10px 0;
-    border-color: transparent #fff transparent transparent;
-    left: 0;
-    margin-left: 6vw;
-}
-
-#arrow-right {
-    border-width: 10px 0 10px 15px;
-    border-color: transparent transparent transparent #fff;
-    right: 0;
-    margin-right: 2vw;
-}
-
-
-
 
 
 
@@ -221,11 +153,15 @@ padding-top: 3em;
 }
 
 .title {
-    border-bottom: solid 0.5px #707070;
+    border-bottom: solid 1px #D4D4D4;
     font-size: 14px;
     padding: 1em;
         margin: 1em 6em 3em 6em;
+
 }
+
+
+
 .loadbut{grid-area: loadbut;
 text-align: center;}
 
@@ -243,6 +179,17 @@ text-align: center;}
 
 .cats{
     grid-area: cats;
+    text-align: center;
+    margin: 1em;
+
+   }
+
+nav > a{
+    text-decoration: none;
+    color: black;
+    padding: 0.5em;
+    font-size: 12px;
+
 }
 
 
