@@ -1,0 +1,279 @@
+  * {
+       box-sizing: border-box;
+   }
+body {
+    font-family: 'Open Sans', sans-serif;
+    color: darkgrey;
+}
+
+h1 {
+    font-size: 16px;
+}
+
+p {
+    font-size: 12px;
+}
+
+/* Slider for mobile*/
+
+body,
+#slider,
+.slider_wrap,
+.slide-content {
+    margin-left: 0;
+    margin-right: 0;
+    /*    padding-left: 4vw;
+    padding-right: 4vw;
+    padding-top: 4vh;
+    padding-bottom: 4vh; CAN'T CENTER WITH THAT' */
+   /* padding: 10px; DOING PADDING FOR WHOLE HTML */
+    /*width: 45vh;*/
+    height: 40vh;
+    /* overflow-x: hidden; */
+    /* overflow-y: hidden; */
+}
+
+.slider_wrap {
+    position: relative;
+    padding: 5px;
+    margin-top: 3em;
+}
+
+.slide {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.slide1 {
+    background-image: url('../img/1.jpg')
+}
+
+.slide2 {
+    background-image: url('../img/2.jpg')
+}
+
+.slide3 {
+    background-image: url('../img/3.jpg')
+}
+
+
+.arrow {
+    cursor: pointer;
+    position: absolute;
+    top: 45%;
+    margin-top: 25px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+
+
+#arrow-left {
+    border-width: 10px 15px 10px 0;
+    border-color: transparent #fff transparent transparent;
+    left: 0;
+    margin-left: 6vw;
+}
+
+#arrow-right {
+    border-width: 10px 0 10px 15px;
+    border-color: transparent transparent transparent #fff;
+    right: 0;
+    margin-right: 2vw;
+}
+
+
+#logo {
+    width: 100vw;
+
+}
+
+
+
+
+/*MOBILE GRID AREA INDEX*/
+
+.wrapper_index {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "logo" "menubar" "slider_wrap" "news" "video" "about_products" ;
+    align-items: center;
+    text-align: center;
+}
+
+.logo {
+    grid-area: logo;
+    background-image: url(logo%20PL6.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 55px;
+
+}
+
+.menubar {
+    grid-area: menubar;
+}
+
+.slider_wrap {
+    grid-area: slider_wrap;
+
+}
+
+.news {
+    grid-area: news;
+}
+
+.video {
+    grid-area: video;
+}
+
+.about_products {
+    grid-area: about_products;
+}
+
+
+
+#menubar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-auto-rows: auto;
+    grid-template-areas: "glowna" "produkty" "onas";
+    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+    margin-top: 2.5em;
+}
+
+.menubar a {
+    text-decoration: none;
+    color: #707070;
+}
+
+#produkty {
+    border-left: 1px solid #707070;
+    border-right: 1px solid #707070;
+    text-align: center;
+}
+
+
+.news {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    margin-top: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    grid-auto-rows: auto;
+
+    grid-template-areas: "news";
+    text-align: center;
+    margin: 2em 1em 2em 1em;
+}
+
+footer{
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+    font-size: 12px;
+    background-color: #EAEAEA;
+    padding: 1em;
+    text-align: left;
+    grid-column-gap: 1em;
+}
+
+
+
+
+/* -----------------------MOBILE GRID PRODUCTS------------------------*/
+
+.wrapperproducts{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "logo"
+                        "menubar"
+                         "cats"
+                        "products"
+                        "loadbut";
+
+}
+
+
+.products{text-align: center;
+padding-top: 3em;
+
+}
+
+.title {
+    border-bottom: solid 0.5px #707070;
+    font-size: 14px;
+    padding: 1em;
+        margin: 1em 6em 3em 6em;
+}
+.loadbut{grid-area: loadbut;
+text-align: center;}
+
+#loadmore{
+    background-color: white;
+    color: #707070;
+    border: none;
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 3em;
+
+
+
+}
+
+.cats{
+    grid-area: cats;
+}
+
+
+/* -----------------------DESKTOP GRID PRODUCTS------------------------*/
+
+@media (min-width: 850px) {
+
+    /* ~~~~~~~~~~INDEX~~~~~~~~~~~~~~~~*/
+
+
+
+    /* ~~~~~~~~~~PRODUCTS~~~~~~~~~~~~~ */
+    .wrapperproducts{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "logo"
+                        "menubar"
+                        "cats"
+                        "maincontent"
+                        "loadbut";
+
+}
+
+
+
+    .title{
+        display: none;
+    }
+    .products {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 1em;
+        margin: 2em 12em 2em 12em;
+
+    }
+
+    .maincontent {
+        grid-area: maincontent;
+    }
+
+    #menubar{
+        font-size: 18px;
+    }
+
+    .cats{text-align: center;
+    margin: 2em;}
