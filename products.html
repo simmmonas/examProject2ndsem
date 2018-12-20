@@ -4,55 +4,46 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="css/style.css">
-    <title>Produkty</title>
+    <title>Realizacje</title>
 </head>
 
 <body>
     <div id="wrapperproducts">
      <div class="logo">
-        <img src="img/logo.jpg" id="logo" alt="Logo Pracowni Leśnej 6">
+        <div class="logoimg"><img src="css/logo%20PL6.svg" id="logo" alt="Logo Pracowni Leśnej 6"></div>
     </div>
     <div id="menubar" class="menubar">
-        <div class="glowna">
-            <a href="glowna" class="href">GŁÓWNA</a>
+       <div class="glowna">
+            <a href="index.html" class="href">AKTUALNOŚCI</a>
         </div>
-        <div class="produkty">
-            <a href="" class="produkty">PRODUKTY</a>
+        <div class="produkty" id="realizacje">
+            <a href="products.html" class="realizacje bold">REALIZACJE</a>
         </div>
         <div class="onas">
-            <a href="" class="onas">O NAS</a>
-       
-     </div>
-        <nav></nav>
-     
+            <a href="about.html" class="onas">O NAS</a>
+        </div>
     </div>
+
+        <nav class="cats"></nav>
+
     <template id="templateProducts"><a href="" id="imglink">
         <img src="" alt=""></a>
         <a href="" id="titlelink"><h2 class="title">Title</h2></a>
         </template>
     
-    <main></main><button id="loadmore">Load more</button>
+  <main class="products"></main>
+  <div class="loadbut">     <button id="loadmore">Load more</button> </div>
 
-        <footer><div id="left">
-            <h2>tel.</h2><p2>+48 503 491 825</p2>
-            <p3>pracownialesna6@gmail.com
-</p3> <h3>instagram</h3><p3>pracownialesna6</p3>
-            <h4>sklep online</h4><p4><a4>www.etsy.com/shop/PracowniaLesna6</a4>
-</p4>
-
-
+        <footer>
+            <div class="contactinfo">
+                <p>pracownialesna6@gmail.com </p>
+                <p> +48 503 491 825 </p>
+                <p> pn - pt: 10:00 - 18:00 </p>
             </div>
+            <div class="fb"> <a href="https://www.facebook.com/pracownialesna6/" target="_blank"><img id="fb" src="img/facebook.png" alt="fb"></a>  </div>
+            <div class="insta"> <a href="https://www.instagram.com/pracownialesna6/" target="_blank"> <img id="insta" src="img/insta.png" alt="insta"></a> </div>
 
-
-            <div id="right">
-            <h5>Godziny otwarcia:</h5>
-<p5>poniedziałek-piątek: 10:00 - 18:00</p5>
-                <p5>sobota, niedziela - nieczynne</p5>
-
-
-            </div>
-
-    </footer></div>
+       </footer></div>
 
 <script>
     let template = document.querySelector("#templateProducts").content;
@@ -82,14 +73,26 @@ var n=1;
             if(cat.name=="Uncategorized"){
                 newNavlink.style.display="none";
             }
+            if(cat.id==catID){
+                newNavlink.style.textDecoration="underline";
+                console.log(newNavlink)
+            }
+
              nav.appendChild(newNavlink);
         }
                           )
         let allLink = document.createElement("a");
-            allLink.textContent = "Wszystkie";
+            allLink.textContent = "wszystkie";
             allLink.href = "products.html";
+         if(!catID) {
+             allLink.style.textDecoration = "underline";
+            }
                   nav.appendChild(allLink);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> simonas
     function loadByCats(){
         fetch("http://angadesign.dk/exam/wordpress/wp-json/wp/v2/product?_embed&categories=" + catID).then(res=>res.json()).then(showAll);
     }

@@ -2,96 +2,32 @@
        box-sizing: border-box;
    }
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Titillium Web', sans-serif;
     color: darkgrey;
+    margin: 0;
 }
 
 h1 {
     font-size: 16px;
+    color: black;
 }
 
 p {
     font-size: 12px;
 }
 
-/* Slider for mobile*/
-
-body,
-#slider,
-.slider_wrap,
-.slide-content {
-    margin-left: 0;
-    margin-right: 0;
-    /*    padding-left: 4vw;
-    padding-right: 4vw;
-    padding-top: 4vh;
-    padding-bottom: 4vh; CAN'T CENTER WITH THAT' */
-   /* padding: 10px; DOING PADDING FOR WHOLE HTML */
-    /*width: 45vh;*/
-    height: 40vh;
-    /* overflow-x: hidden; */
-    /* overflow-y: hidden; */
+a{
+    color: black;
+    text-decoration: none;
 }
 
-.slider_wrap {
-    position: relative;
-    padding: 5px;
-    margin-top: 3em;
+img {
+    max-width: 100%;
 }
 
-.slide {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+.bold{
+    font-weight: bolder;
 }
-
-.slide1 {
-    background-image: url('../img/1.jpg')
-}
-
-.slide2 {
-    background-image: url('../img/2.jpg')
-}
-
-.slide3 {
-    background-image: url('../img/3.jpg')
-}
-
-
-.arrow {
-    cursor: pointer;
-    position: absolute;
-    top: 45%;
-    margin-top: 25px;
-    width: 0;
-    height: 0;
-    border-style: solid;
-}
-
-
-
-#arrow-left {
-    border-width: 10px 15px 10px 0;
-    border-color: transparent #fff transparent transparent;
-    left: 0;
-    margin-left: 6vw;
-}
-
-#arrow-right {
-    border-width: 10px 0 10px 15px;
-    border-color: transparent transparent transparent #fff;
-    right: 0;
-    margin-right: 2vw;
-}
-
-
-#logo {
-    width: 100vw;
-
-}
-
-
-
 
 /*MOBILE GRID AREA INDEX*/
 
@@ -106,12 +42,18 @@ body,
 
 .logo {
     grid-area: logo;
-    background-image: url(logo%20PL6.svg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 55px;
+    display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: " . logoimg  . ";
+    margin-top: 2em;
+
 
 }
+
+ .logoimg{
+        grid-area: logoimg;
+    }
+
 
 .menubar {
     grid-area: menubar;
@@ -144,19 +86,25 @@ body,
     grid-template-areas: "glowna" "produkty" "onas";
     text-align: center;
     padding: 10px;
-    font-size: 13px;
-    margin-top: 2.5em;
+    font-size: 16px;
+    margin-top: 1em;
+
 }
 
 .menubar a {
     text-decoration: none;
-    color: #707070;
+    color: black;
 }
 
-#produkty {
+#realizacje {
     border-left: 1px solid #707070;
     border-right: 1px solid #707070;
     text-align: center;
+}
+
+#scroll {
+    margin: 3em 0em 1em 0em;
+
 }
 
 
@@ -164,19 +112,22 @@ body,
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
-    margin-top: 40px;
-    margin-left: 10px;
-    margin-right: 10px;
     grid-auto-rows: auto;
-   
     grid-template-areas: "news";
     text-align: center;
+    margin: 2em 2em 2em 2em;
+    color: black;
+    border-bottom: solid 1px #DEDEDE;
+}
+
+.video{
     margin: 2em 1em 2em 1em;
+    color: black;
 }
 
 footer{
     display: grid;
-    grid-template-columns: 4fr 1fr 1fr;
+    grid-template-columns: 4fr 0.3fr 0.3fr;
     font-size: 12px;
     background-color: #EAEAEA;
     padding: 1em;
@@ -184,7 +135,18 @@ footer{
     grid-column-gap: 1em;
 }
 
+.fb, .insta{
+    text-align: right;
+}
 
+#fb, #insta{
+    width: 30px;
+}
+
+.contactinfo{
+    padding-left: 1em;
+
+}
 
 
 /* -----------------------MOBILE GRID PRODUCTS------------------------*/
@@ -208,11 +170,15 @@ padding-top: 3em;
 }
 
 .title {
-    border-bottom: solid 0.5px #707070;
+    border-bottom: solid 1px #D4D4D4;
     font-size: 14px;
     padding: 1em;
         margin: 1em 6em 3em 6em;
+
 }
+
+
+
 .loadbut{grid-area: loadbut;
 text-align: center;}
 
@@ -230,16 +196,200 @@ text-align: center;}
 
 .cats{
     grid-area: cats;
+    text-align: center;
+    margin: 1em;
+
+   }
+
+nav > a{
+    text-decoration: none;
+    color: black;
+    padding: 0.5em;
+    font-size: 12px;
+
+}
+
+/* -----------------------MOBILE GRID DETAILS-----------------------*/
+
+.arrow {
+    cursor: pointer;
+
+    top: 45%;
+    margin-top: 25px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+#arrow-left {
+    border-width: 10px 15px 10px 0;
+    border-color: transparent black transparent transparent;
+    left: 0;
+    margin: 21vh 0vw 6vh 29.5vw;
+
+}
+
+#arrow-right {
+    border-width: 10px 0 10px 15px;
+    border-color: transparent transparent transparent black;
+    right: 0;
+    margin-top: 21.5vh;
+    margin-left: 2vw;
 }
 
 
-/* -----------------------DESKTOP GRID PRODUCTS------------------------*/
+.wrapperproductsDetails{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "logo"
+                        "menubar"
+                        "productdetail"  ;
+
+}
+
+#menubar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-auto-rows: auto;
+    grid-template-areas: "glowna produkty onas"
+                        "scroll scroll scroll";
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 1em;
+}
+
+
+#scroll{
+    grid-area: scroll;
+    text-align: center;
+    width: 100%;
+}
+
+.productdetail{
+    text-align: center;
+    margin: 1em;
+}
+
+#title{
+    color: black;
+}
+
+#date{
+    font-size: 12px;
+
+}
+#description{
+    padding-top: 1em;
+    color: black;
+}
+h3{
+    margin: 0;
+}
+h2{
+    margin: 0;
+}
+
+
+
+
+
+/* -----------------------MOBILE GRID ABOUTUS----------------------*/
+
+.wrapper_aboutus{display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "logo"
+                        "menubar"
+                        "us"
+        "aboutus"
+        "contactform";
+}
+
+.us{grid-area: us;
+text-align: center;
+padding: 2em;}
+
+.aboutus{grid-area: aboutus;
+text-align: center;
+border-top: 1px solid #D4D4D4;
+padding: 2em;}
+
+.contactform{grid-area: contactform;
+
+}
+
+.contactform > h1{
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+#names, #email {
+    border: none;
+    border-bottom: 1px solid #D4D4D4;
+    margin-left: 4em;
+}
+
+#message{
+    margin: 2em 0em 2em 4em;
+    border: 1px solid #D4D4D4;
+    width: 25em;
+    height: 10em;
+    padding: 12px 20px;
+
+}
+
+#send{
+    margin-left: 3.5em;
+    margin-bottom: 2em;
+}
+
+ .heading{
+        text-align: center;
+    }
+
+
+
+
+
+/* -----------------------DESKTOP GRID ------------------------*/
+
 
 @media (min-width: 850px) {
 
+    p{
+        font-size: 15px;
+    }
     /* ~~~~~~~~~~INDEX~~~~~~~~~~~~~~~~*/
 
+    .logo{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: " . logoimg  . "
 
+    }
+    .logoimg{
+        grid-area: logoimg;
+    }
+
+    #menubar{
+        font-size: 23px;
+    }
+
+    footer{
+    grid-template-columns: 4fr 0.1fr 0.1fr;
+    font-size: 16px;
+    padding: 1em;
+    text-align: left;
+
+}
+
+    .scroll{
+        width: 60%;
+        margin-left: 20%;
+    }
 
     /* ~~~~~~~~~~PRODUCTS~~~~~~~~~~~~~ */
     .wrapperproducts{
@@ -249,31 +399,144 @@ text-align: center;}
     grid-template-areas: "logo"
                         "menubar"
                         "cats"
-                        "maincontent"
+                        "products"
                         "loadbut";
 
 }
 
 
 
-    .title{
+    #titlelink{
         display: none;
+    }
+
+    #imagelink {
+        display:none;
     }
     .products {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: auto;
         grid-gap: 1em;
-        margin: 2em 12em 2em 12em;
+        margin: 2vh 24vw 2vh 24vw;
 
     }
 
-    .maincontent {
-        grid-area: maincontent;
-    }
 
     #menubar{
         font-size: 18px;
     }
 
-    .cats{text-align: center;
-    margin: 2em;}
+    .cats{
+        margin: 2em;
+    }
+  nav > a{
+    text-decoration: none;
+    color: black;
+    padding: 2em;
+    font-size: 16px;
+}
+
+     /* ~~~~~~~~~~DETAILS~~~~~~~~~~~~~ */
+
+.productdetail{
+    grid-area: productdetail;
+    margin-left: 33vw;
+    margin-right: 33vw;
+    margin-bottom: 6vh;
+    text-align: center;
+
+}
+
+    #menubar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-auto-rows: auto;
+    grid-template-areas: "glowna produkty onas"
+                        "arrow-left scroll arrow-right";
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 1em;
+}
+
+    #arrow-left{
+        grid-area: arrow-left;
+    }
+  #arrow-right{
+        grid-area: arrow-right;
+    }
+
+    #scroll{
+        margin-left: 0;
+        width: 100%;
+    }
+
+
+
+
+
+     /* ~~~~~~~~~~ABOUT US~~~~~~~~~~~~ */
+
+.wrapper_aboutus{display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "logo"
+                        "menubar"
+                        "about-us"
+        "contactform";
+    }
+
+    .aboutus{border-top: none;}
+    .us{ padding: 1em 0em 2em 7em;
+    }
+
+    .about-us{
+        grid-area: about-us;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "us aboutus";
+        padding: 3em;
+        border-bottom: 1px solid #D4D4D4;
+        color: black;
+    }
+
+    .contactform{
+        margin-top: 2em;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: " . form .  "
+
+    }
+
+    .contactfrom > h1{
+        text-align: center;
+    }
+
+    .form{
+        grid-area: form;
+    }
+
+    #names, #email {
+    border: none;
+    border-bottom: 1px solid #D4D4D4;
+    margin-left: 4em;
+}
+
+#message{
+    margin: 2em 0em 2em 4em;
+    border: 1px solid #D4D4D4;
+    width: 32em;
+    height: 10em;
+    padding: 12px 20px;
+
+}
+
+#send{border: none;
+    margin-left: 3.5em;
+    margin-bottom: 5em;
+}
+
+

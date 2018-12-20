@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-
-<html lang="">
+<html lang="pl">
 
 <head>
     <meta charset="utf-8">
@@ -12,61 +11,53 @@
 
 
 <body>
-
-    <div class="wrapper_index">
-        <div class="logo">
-            <img src="img/logo.jpg" id="logo" alt="Logo Pracowni Leśnej 6">
+   <div class="wrapper_index">
+    <div class="logo">
+        <div class="logoimg"><img src="css/logo%20PL6.svg" id="logo" alt="Logo Pracowni Leśnej 6"></div>
+    </div>
+    <div id="menubar" class="menubar">
+        <div class="glowna bold">
+            <a href="index.html" class="href">AKTUALNOŚCI</a>
         </div>
-        <div id="menubar" class="menubar">
-            <div class="glowna">
-                <a href="index.html" class="href">GŁÓWNA</a>
-            </div>
-            <div class="produkty">
-                <a href="products.html" class="produkty">REALIZACJE</a>
-            </div>
-            <div class="onas">
-                <a href="" class="onas">O NAS</a>
-            </div>
+        <div class="produkty" id="realizacje">
+            <a href="products.html" class="realizacje">REALIZACJE</a>
         </div>
+        <div class="onas">
+            <a href="about.html" class="onas">O NAS</a>
+        </div>
+    </div>
 
 
+<div class="scroll">  <img id="scroll"> </div>
+<template>
 
-
-
-
-
-                <img id="scroll" class="slider_wrap">
-
-
-
-
-
-
-        <div class="news">
 
             <h1>Długo wyczekiwane kalendarze na 2019 rok już są!</h1>
             <p> Wszystkim zainteresowanym gorąco polecamy! Kalendarze są w płóciennej, twardej oprawie w formacie A5. Układ kalendarza jest tygodniowy, a ponadto wewnątrz znajdują się: numery tygodni, rozpiska miesięczna oraz miejsce na notatki. Polecamy wszystkim, którzy cenią 100% ręczną robotę. Cena to jedyne 110 zł + kw. Wszystkich chętnych zapraszamy do składania zamówień!</p>
 
 
+ </template><div class="news"></div>
+        <div class="video"><iframe width="560" height="315" src="https://www.youtube.com/embed/6KYc2pkIv3Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>Mamy nadzieje, ze kalendarz spodoba Wam sie na tyle, aby sprawic sobie nowy co roku!</p>
         </div>
-        <div class="video"></div>
         <div class="about_products"></div>
 
-      <footer>
+       <footer>
             <div class="contactinfo">
                 <p>pracownialesna6@gmail.com </p>
                 <p> +48 503 491 825 </p>
                 <p> pn - pt: 10:00 - 18:00 </p>
             </div>
-            <div class="fb">icon</div>
-            <div class="insta">icon</div>
-        </footer>
+            <div class="fb"> <a href="https://www.facebook.com/pracownialesna6/" target="_blank"><img id="fb" src="img/facebook.png" alt="fb"></a>  </div>
+            <div class="insta"> <a href="https://www.instagram.com/pracownialesna6/" target="_blank"> <img id="insta" src="img/insta.png" alt="insta"></a> </div>
+
+       </footer>
 
 
 
 
+</div>
 
-    </div>
 
 
     <script>
@@ -74,6 +65,12 @@
         let baselink = "http://angadesign.dk/exam/wordpress/wp-json/wp/v2/news?_embed";
         let files = new Array();
         let manual = false;
+        let i;
+            i=1;
+        var x = window.matchMedia("(max-width: 700px)");
+         let template = document.querySelector("template").content;
+
+
 
         //swiping functionality taken from Alan's example//
         	var touchstartX = 0;
@@ -103,13 +100,11 @@
 			}
         //end of Alan's script//
 
-let i;
-            i=1;
+
 
         function minus(){
              manual = true;
             console.log(i);
-            i--;
             i--;
             getImages();
 
@@ -119,14 +114,13 @@ let i;
         function plus(){
              manual = true;
             console.log(i);
-            if(i==100){
-                i=1;
-            }
             i++;
             getImages();
 
+}
 
-        }
+
+
 
         function getImages() {
             fetch("http://angadesign.dk/exam/wordpress/wp-json/wp/v2/slider_images?_embed").then(res => res.json()).then(showImages);
@@ -134,7 +128,13 @@ let i;
 
         function showImages(images) {
             console.log(i);
-            files[i] = images[i]._embedded["wp:featuredmedia"]["0"].media_details.sizes.medium.source_url;
+          if(images[i]){
+              if(x.matches){
+            files[i] = images[i]._embedded["wp:featuredmedia"]["0"].media_details.sizes.medium.source_url;}
+          else{files[i] = images[i]._embedded["wp:featuredmedia"]["0"].media_details.sizes.full.source_url;}}
+            else {
+                i=1;
+            }
 
                 scroll.src = files[i];
 
@@ -149,8 +149,24 @@ timeout();
         }
 
 function timeout(){
-        setTimeout(function(){i++, getImages();}, 3000);}
+        setTimeout(function(){
+                              i++, getImages();}, 3000);}
+         function getNews() {
+            fetch(baselink).then(res => res.json()).then(showNews);
+        }
+
+        function showNews(news){
+               let copy = template.cloneNode(true);
+            news.forEach(post=>{
+            copy.querySelector("h1").textContent = post.title.rendered;
+            copy.querySelector("p").innerHTML = post.content.rendered;})
+            let parent = document.querySelector(".news");
+            parent.appendChild(copy);
+
+        }
+        getNews();
         getImages();
+
 
     </script>
 </body>
