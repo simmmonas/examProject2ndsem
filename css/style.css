@@ -25,6 +25,9 @@ img {
     max-width: 100%;
 }
 
+.bold{
+    font-weight: bolder;
+}
 
 /*MOBILE GRID AREA INDEX*/
 
@@ -85,11 +88,12 @@ img {
     padding: 10px;
     font-size: 16px;
     margin-top: 1em;
+
 }
 
 .menubar a {
     text-decoration: none;
-    color: #707070;
+    color: black;
 }
 
 #realizacje {
