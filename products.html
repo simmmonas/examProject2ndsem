@@ -77,18 +77,25 @@ var n=1;
             if(cat.name=="Uncategorized"){
                 newNavlink.style.display="none";
             }
+            if(cat.id==catID){
+                newNavlink.style.textDecoration="underline";
+                console.log(newNavlink)
+            }
+
              nav.appendChild(newNavlink);
 
         }
                           )
         let allLink = document.createElement("a");
-            allLink.textContent = "wszystkie";
+            allLink.textContent = "Wszystkie";
             allLink.href = "products.html";
+         if(!catID) {
+             allLink.style.textDecoration = "underline";
+            }
                   nav.appendChild(allLink);
 
 
     }
-
 
     function loadByCats(){
         fetch("http://angadesign.dk/exam/wordpress/wp-json/wp/v2/product?_embed&categories=" + catID).then(res=>res.json()).then(showAll);
