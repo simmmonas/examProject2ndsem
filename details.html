@@ -141,8 +141,8 @@
                   if(x.matches){
                 console.log(i);
                 arrowLeft.style.display="none";
-                arrowRight.style.display="none";
-                  files.push(product._embedded["wp:featuredmedia"]["0"].media_details.sizes.medium.source_url)
+                arrowRight.style.display="none";}
+                 /* files.push(product._embedded["wp:featuredmedia"]["0"].media_details.sizes.medium.source_url)
             if(product.acf.img1){
                 files.push(product.acf.img1.sizes.medium);
             }
@@ -172,8 +172,8 @@
             if(product.acf.img8){
                 files.push(product.acf.img8.sizes.medium);
 
-            }}
-            else{
+            }*/
+
             files.push(product._embedded["wp:featuredmedia"]["0"].media_details.sizes.full.source_url)
             if(product.acf.img1){
                 files.push(product.acf.img1.sizes.medium_large);
@@ -205,10 +205,10 @@
             if(product.acf.img8){
                 files.push(product.acf.img8.sizes.medium_large);
 
-            }}
+            }
                 scroll.src = files[0];
-
         }
+
             arrowLeft.addEventListener("click", previousImage);
         var imageCounter = 0
 

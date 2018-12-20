@@ -244,10 +244,24 @@ nav > a{
 
 }
 
+#menubar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-auto-rows: auto;
+    grid-template-areas: "glowna produkty onas"
+                        "scroll scroll scroll";
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 1em;
+}
+
 
 #scroll{
+    grid-area: scroll;
     text-align: center;
-    margin-left: 31vw;
+    width: 100%;
 }
 
 .productdetail{
@@ -273,6 +287,7 @@ h3{
 h2{
     margin: 0;
 }
+
 
 
 
