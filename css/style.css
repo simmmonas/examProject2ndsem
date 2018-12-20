@@ -387,7 +387,7 @@ padding: 2em;}
         grid-template-columns: repeat(3,1fr);
         grid-template-rows: auto;
         grid-gap: 1em;
-        margin: 2em 12em 2em 12em;
+        margin: 2vh 32vw 2vh 32vw;
 
     }
 
