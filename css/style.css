@@ -2,8 +2,9 @@
        box-sizing: border-box;
    }
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Titillium Web', sans-serif;
     color: darkgrey;
+    margin: 0;
 }
 
 h1 {
@@ -38,10 +39,18 @@ img {
 
 .logo {
     grid-area: logo;
-    margin: 1em 12em 0em 12em;
+    display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: " . logoimg  . ";
+    margin-top: 1em;
 
 
 }
+
+ .logoimg{
+        grid-area: logoimg;
+    }
+
 
 .menubar {
     grid-area: menubar;
@@ -75,7 +84,7 @@ img {
     text-align: center;
     padding: 10px;
     font-size: 16px;
-    margin-top: 2.5em;
+    margin-top: 1em;
 }
 
 .menubar a {
@@ -260,13 +269,34 @@ padding: 2em;}
     margin-bottom: 2em;
 }
 
-/* -----------------------DESKTOP GRID PRODUCTS------------------------*/
+/* -----------------------DESKTOP GRID ------------------------*/
+
 
 @media (min-width: 850px) {
 
     /* ~~~~~~~~~~INDEX~~~~~~~~~~~~~~~~*/
 
+    .logo{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: " . logoimg  . "
 
+    }
+    .logoimg{
+        grid-area: logoimg;
+    }
+
+    #menubar{
+        font-size: 23px;
+    }
+
+    footer{
+    grid-template-columns: 4fr 0.1fr 0.1fr;
+    font-size: 16px;
+    padding: 1em;
+    text-align: left;
+
+}
 
     /* ~~~~~~~~~~PRODUCTS~~~~~~~~~~~~~ */
     .wrapperproducts{
@@ -276,7 +306,7 @@ padding: 2em;}
     grid-template-areas: "logo"
                         "menubar"
                         "cats"
-                        "maincontent"
+                        "products"
                         "loadbut";
 
 }
@@ -289,18 +319,94 @@ padding: 2em;}
     .products {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto;
         grid-gap: 1em;
         margin: 2em 12em 2em 12em;
 
     }
 
-    .maincontent {
-        grid-area: maincontent;
-    }
 
     #menubar{
         font-size: 18px;
     }
 
-    .cats{text-align: center;
-    margin: 2em;}
+    .cats{
+        margin: 2em;
+    }
+  nav > a{
+    text-decoration: none;
+    color: black;
+    padding: 2em;
+    font-size: 16px;
+}
+
+     /* ~~~~~~~~~~DETAILS~~~~~~~~~~~~~ */
+
+
+
+
+     /* ~~~~~~~~~~ABOUT US~~~~~~~~~~~~ */
+
+.wrapper_aboutus{display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "logo"
+                        "menubar"
+                        "about-us"
+        "contactform";
+    }
+
+    .aboutus{border-top: none;}
+    .us{ padding: 1em 0em 2em 7em;
+    }
+
+    .about-us{
+        grid-area: about-us;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "us aboutus";
+        padding: 3em;
+        border-bottom: 1px solid #D4D4D4;
+        color: black;
+    }
+
+    .contactform{
+        margin-top: 2em;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas: " . form .  "
+
+    }
+
+    .contactfrom > h1{
+        text-align: center;
+    }
+
+    .form{
+        grid-area: form;
+    }
+
+    #names, #email {
+    border: none;
+    border-bottom: 1px solid #D4D4D4;
+    margin-left: 4em;
+}
+
+#message{
+    margin: 2em 0em 2em 4em;
+    border: 1px solid #D4D4D4;
+    width: 32em;
+    height: 10em;
+    padding: 12px 20px;
+
+}
+
+#send{border: none;
+    margin-left: 3.5em;
+    margin-bottom: 5em;
+}
+
+    .heading{
+        text-align: center;
+    }
