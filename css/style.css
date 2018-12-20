@@ -375,6 +375,10 @@ padding: 2em;}
 
 }
 
+    #scroll{
+        width: 60%;
+    }
+
     /* ~~~~~~~~~~PRODUCTS~~~~~~~~~~~~~ */
     .wrapperproducts{
     display: grid;
@@ -402,7 +406,7 @@ padding: 2em;}
         grid-template-columns: repeat(3,1fr);
         grid-template-rows: auto;
         grid-gap: 1em;
-        margin: 2vh 32vw 2vh 32vw;
+        margin: 2vh 24vw 2vh 24vw;
 
     }
 
