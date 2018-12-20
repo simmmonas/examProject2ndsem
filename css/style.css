@@ -346,6 +346,10 @@ padding: 2em;}
     margin-bottom: 2em;
 }
 
+ .heading{
+        text-align: center;
+    }
+
 
 
 
@@ -535,6 +539,4 @@ padding: 2em;}
     margin-bottom: 5em;
 }
 
-    .heading{
-        text-align: center;
-    }
+
