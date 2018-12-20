@@ -42,7 +42,7 @@ img {
     display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-areas: " . logoimg  . ";
-    margin-top: 1em;
+    margin-top: 2em;
 
 
 }
@@ -207,6 +207,32 @@ nav > a{
 
 /* -----------------------MOBILE GRID DETAILS-----------------------*/
 
+.arrow {
+    cursor: pointer;
+
+    top: 45%;
+    margin-top: 25px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+#arrow-left {
+    border-width: 10px 15px 10px 0;
+    border-color: transparent black transparent transparent;
+    left: 0;
+    margin: 21vh 0vw 6vh 29.5vw;
+
+}
+
+#arrow-right {
+    border-width: 10px 0 10px 15px;
+    border-color: transparent transparent transparent black;
+    right: 0;
+    margin-top: 21.5vh;
+    margin-left: 2vw;
+}
+
 
 .wrapperproductsDetails{
     display: grid;
@@ -217,6 +243,38 @@ nav > a{
                         "productdetail"  ;
 
 }
+
+
+#scroll{
+    text-align: center;
+    margin-left: 31vw;
+}
+
+.productdetail{
+    text-align: center;
+    margin: 1em;
+}
+
+#title{
+    color: black;
+}
+
+#date{
+    font-size: 12px;
+
+}
+#description{
+    padding-top: 1em;
+    color: black;
+}
+h3{
+    margin: 0;
+}
+h2{
+    margin: 0;
+}
+
+
 
 
 /* -----------------------MOBILE GRID ABOUTUS----------------------*/
@@ -269,6 +327,10 @@ padding: 2em;}
     margin-bottom: 2em;
 }
 
+
+
+
+
 /* -----------------------DESKTOP GRID ------------------------*/
 
 
@@ -313,12 +375,16 @@ padding: 2em;}
 
 
 
-    .title{
+    #titlelink{
         display: none;
+    }
+
+    #imagelink {
+        display:none;
     }
     .products {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: repeat(3,1fr);
         grid-template-rows: auto;
         grid-gap: 1em;
         margin: 2em 12em 2em 12em;
@@ -341,6 +407,20 @@ padding: 2em;}
 }
 
      /* ~~~~~~~~~~DETAILS~~~~~~~~~~~~~ */
+
+.productdetail{
+    grid-area: productdetail;
+    margin-left: 33vw;
+    margin-right: 33vw;
+    margin-bottom: 6vh;
+    text-align: center;
+
+}
+
+    #scroll{
+        margin-left: 0;
+    }
+
 
 
 

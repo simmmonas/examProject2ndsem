@@ -13,26 +13,13 @@
 
 <body>
 
-    <style>
-        #arrow-left {
-            background-color: red;
-            width: 10%;
-            height: 40%;
-        }
-          #arrow-right {
-            background-color: red;
-            width: 10%;
-            height: 40%;
-        }
-
-    </style>
 
 
     <div class="wrapperproductsDetails">
         <div class="logo">
             <div class="logoimg"><img src="css/logo%20PL6.svg" id="logo" alt="Logo Pracowni Leśnej 6"></div>
     </div>
-        </div>
+
         <div id="menubar" class="menubar">
             <div class="glowna">
                 <a href="index.html" class="href">GŁÓWNA</a>
@@ -44,9 +31,9 @@
                 <a href="" class="onas">O NAS</a>
 
             </div>
-<div id="arrow-left"></div>
+<div id="arrow-left" class="arrow"></div>
  <img id="scroll">
-            <div id="arrow-right"></div>
+            <div id="arrow-right" class="arrow"></div>
         </div>
         <template id="templateProducts">
 
@@ -71,7 +58,7 @@
             <div class="insta"><img id="insta" src="img/insta.png" alt="insta"> </div>
 
        </footer>
-
+</div>
     <script>
         let template = document.querySelector("#templateProducts").content;
         let parent = document.querySelector("main");
