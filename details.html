@@ -30,10 +30,13 @@
         <div class="onas">
             <a href="about.html" class="onas">O NAS</a>
         </div>
+
+
 <div id="arrow-left" class="arrow"></div>
  <img id="scroll">
             <div id="arrow-right" class="arrow"></div>
         </div>
+
         <template id="templateProducts">
 
 
@@ -72,7 +75,7 @@
         let arrowLeft = document.querySelector("#arrow-left");
         let arrowRight = document.querySelector("#arrow-right");
         x.addEventListener("change", gatherImages);
-
+        let loader = document.querySelector("#loader");
         	var touchstartX = 0;
 			var touchstartY = 0;
 			var touchendX = 0;
@@ -96,7 +99,7 @@
         }
 
         function showAll(product) {
-
+            loader.style.display = "none";
 
             const copy = template.cloneNode(true);
             copy.querySelector("h2").textContent = product.title.rendered;

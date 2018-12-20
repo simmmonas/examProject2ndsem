@@ -23,6 +23,18 @@
             <a href="about.html" class="onas">O NAS</a>
         </div>
     </div>
+<div id="loader" class="loader-pencil-content">
+  <div class="btn">
+    <svg id="loader-pencil" xmlns="http://www.w3.org/2000/svg" width="667" height="182" viewBox="0 0 677.34762 182.15429">
+      <g>
+        <path id="body-pencil" d="M128.273 0l-3.9 2.77L0 91.078l128.273 91.076 549.075-.006V.008L128.273 0zm20.852 30l498.223.006V152.15l-498.223.007V30zm-25 9.74v102.678l-49.033-34.813-.578-32.64 49.61-35.225z">
+        </path>
+        <path id="line" d="M134.482 157.147v25l518.57.008.002-25-518.572-.008z">
+        </path>
+      </g>
+    </svg>
+  </div>
+</div>
 
         <nav class="cats"></nav>
 
@@ -56,6 +68,8 @@ var n=1;
     let nav = document.querySelector("nav");
     let imglink = document.querySelector("#imglink");
     let titlelink = document.querySelector("#titlelink");
+    let loader = document.querySelector("#loader");
+
     if(catID){
         loadByCats();
     }else{
@@ -89,10 +103,7 @@ var n=1;
             }
                   nav.appendChild(allLink);
     }
-<<<<<<< HEAD
-=======
 
->>>>>>> simonas
     function loadByCats(){
         fetch("http://angadesign.dk/exam/wordpress/wp-json/wp/v2/product?_embed&categories=" + catID).then(res=>res.json()).then(showAll);
     }
@@ -111,6 +122,7 @@ var n=1;
         fetch(baselink + n).then(res=>res.json()).then(showAll);
     }
     function showAll(products){
+        loader.style.display= "none";
         products.forEach(product=>{
                          console.log(product.length);
                                  const copy = template.cloneNode(true);

@@ -29,6 +29,7 @@ img {
     font-weight: bolder;
 }
 
+
 /*MOBILE GRID AREA INDEX*/
 
 .wrapper_index {
@@ -162,6 +163,44 @@ footer{
                         "loadbut";
 
 }
+
+/*loader from codepen*/
+.loader-pencil-content  {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.btn {
+  align-items: center;
+  background: white;
+  border-radius: 4px;
+  display: flex;
+  height: 40px;
+  justify-content: center;
+  padding: 1rem;
+  width: 160px;
+}
+
+svg#loader-pencil {
+  fill: black;
+  width: 80px;
+}
+
+#line {
+  animation: linePencil .8s infinite linear;
+}
+
+@keyframes linePencil {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-150px);
+  }
+}
+/*end of loader*/
 
 
 .products{text-align: center;
