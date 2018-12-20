@@ -351,6 +351,9 @@ padding: 2em;}
 
 @media (min-width: 850px) {
 
+    p{
+        font-size: 15px;
+    }
     /* ~~~~~~~~~~INDEX~~~~~~~~~~~~~~~~*/
 
     .logo{
@@ -375,8 +378,9 @@ padding: 2em;}
 
 }
 
-    #scroll{
+    .scroll{
         width: 60%;
+        margin-left: 20%;
     }
 
     /* ~~~~~~~~~~PRODUCTS~~~~~~~~~~~~~ */
@@ -436,8 +440,29 @@ padding: 2em;}
 
 }
 
+    #menubar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-auto-rows: auto;
+    grid-template-areas: "glowna produkty onas"
+                        "arrow-left scroll arrow-right";
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 1em;
+}
+
+    #arrow-left{
+        grid-area: arrow-left;
+    }
+  #arrow-right{
+        grid-area: arrow-right;
+    }
+
     #scroll{
         margin-left: 0;
+        width: 100%;
     }
 
 
