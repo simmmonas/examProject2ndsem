@@ -75,7 +75,6 @@
         let arrowLeft = document.querySelector("#arrow-left");
         let arrowRight = document.querySelector("#arrow-right");
         x.addEventListener("change", gatherImages);
-        let loader = document.querySelector("#loader");
         	var touchstartX = 0;
 			var touchstartY = 0;
 			var touchendX = 0;
@@ -99,8 +98,6 @@
         }
 
         function showAll(product) {
-            loader.style.display = "none";
-
             const copy = template.cloneNode(true);
             copy.querySelector("h2").textContent = product.title.rendered;
             copy.querySelector("h3").textContent = product.acf.date;
@@ -144,37 +141,7 @@
                 console.log(i);
                 arrowLeft.style.display="none";
                 arrowRight.style.display="none";}
-                 /* files.push(product._embedded["wp:featuredmedia"]["0"].media_details.sizes.medium.source_url)
-            if(product.acf.img1){
-                files.push(product.acf.img1.sizes.medium);
-            }
-            if(product.acf.img2){
-                files.push(product.acf.img2.sizes.medium);
-
-            }
-            if(product.acf.img3){
-                files.push(product.acf.img3.sizes.medium);
-            }
-            if(product.acf.img4){
-                files.push(product.acf.img4.sizes.medium);
-
-            }
-            if(product.acf.img5){
-                files.push(product.acf.img5.sizes.medium);
-
-            }
-            if(product.acf.img6){
-                files.push(product.acf.img6.sizes.medium);
-
-            }
-            if(product.acf.img7){
-                files.push(product.acf.img7.sizes.medium);
-
-            }
-            if(product.acf.img8){
-                files.push(product.acf.img8.sizes.medium);
-
-            }*/
+             
 
             files.push(product._embedded["wp:featuredmedia"]["0"].media_details.sizes.full.source_url)
             if(product.acf.img1){
@@ -235,7 +202,6 @@
 
            arrowRight.addEventListener("click", nextImage);
         console.log(files)
-        //bind to arrow right
         var imageCounter = 0
         function nextImage(){
             let currentImage = document.querySelector("#scroll");
