@@ -39,6 +39,7 @@ img {
     grid-template-areas: "logo" "menubar" "slider_wrap" "news" "video" "about_products" ;
     align-items: center;
     text-align: center;
+    width: 100vw;
 }
 
 .logo {
@@ -403,6 +404,9 @@ padding: 2em;}
     }
     /* ~~~~~~~~~~INDEX~~~~~~~~~~~~~~~~*/
 
+    .wrapper_index {
+        width: 100vw;
+    }
     .logo{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;

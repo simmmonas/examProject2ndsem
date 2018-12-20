@@ -70,7 +70,7 @@
         var x = window.matchMedia("(max-width: 700px)");
          let template = document.querySelector("template").content;
 
-
+        window.addEventListener("resize", getImages);
 
         //swiping functionality taken from Alan's example//
         	var touchstartX = 0;
